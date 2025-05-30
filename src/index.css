@@ -97,6 +97,25 @@
     scroll-behavior: smooth;
     @apply text-[rgb(45_80_22)];
   }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    body {
+      @apply text-sm;
+    }
+    .container {
+      @apply px-4;
+    }
+  }
+
+  @media (max-width: 480px) {
+    body {
+      @apply text-xs;
+    }
+    .container {
+      @apply px-2;
+    }
+  }
 }
 
 @keyframes fade-in {
