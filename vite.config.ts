@@ -9,6 +9,17 @@ export default defineConfig(({ mode }) => ({
   build: {
     outDir: "docs",
     emptyOutDir: true,
+    rollupOptions: {
+      output: {
+        // Copy _redirects file to the output directory
+        manualChunks: undefined,
+        assetFileNames: (assetInfo) => {
+          // Keep the original file name for _redirects
+          if (assetInfo.name === '_redirects') return '[name][extname]';
+          return 'assets/[name]-[hash][extname]';
+        },
+      },
+    },
   },
   server: {
     host: "::",

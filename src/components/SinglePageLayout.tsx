@@ -68,18 +68,17 @@ const SinglePageLayout = () => {
 
     // Default to home if no matching section found
     const targetSection = sectionIndex !== -1 ? sectionIndex : 0;
+    
+    // Update current section state
+    setCurrentSection(targetSection);
+    
+    // Update URL without adding to history if needed
+    if (location.pathname !== sections[targetSection].path) {
+      navigate(sections[targetSection].path, { replace: true });
+    }
 
-    // Only update if we need to change sections
-    if (targetSection !== currentSection || location.pathname !== sections[targetSection].path) {
-      setIsScrolling(true);
-      setCurrentSection(targetSection);
-
-      // Update URL without adding to history
-      if (location.pathname !== sections[targetSection].path) {
-        navigate(sections[targetSection].path, { replace: true });
-      }
-
-      // Find the section element and scroll to it with offset
+    // Scroll to the section
+    const scrollToSection = () => {
       const sectionElement = document.getElementById(sections[targetSection].id);
       if (sectionElement) {
         const headerOffset = 80; // Should match the value in Navigation.tsx
@@ -91,13 +90,21 @@ const SinglePageLayout = () => {
           behavior: "smooth"
         });
       }
+    };
 
+    // Small timeout to ensure the DOM is ready
+    const scrollTimer = setTimeout(() => {
+      setIsScrolling(true);
+      scrollToSection();
+      
       // Reset scrolling flag after animation completes
       if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
       scrollTimeout.current = setTimeout(() => {
         setIsScrolling(false);
       }, 1000);
-    }
+    }, 100);
+
+    return () => clearTimeout(scrollTimer);
   }, [location.pathname]);
 
   // Clean up timeout on unmount

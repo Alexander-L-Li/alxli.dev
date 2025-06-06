@@ -40,22 +40,10 @@ const Navigation = ({ currentSection, sections }: NavigationProps) => {
                 )}
                 onClick={(e) => {
                   e.preventDefault();
-                  // Scroll to the section with offset for header
-                  const section = document.getElementById(sections[index].id);
-                  if (section) {
-                    const headerOffset = 80; // Adjust this value based on your header height
-                    const elementPosition = section.getBoundingClientRect().top;
-                    const offsetPosition =
-                      elementPosition + window.pageYOffset - headerOffset;
-
-                    window.scrollTo({
-                      top: offsetPosition,
-                      behavior: "smooth",
-                    });
-
-                    // Update URL
-                    window.history.pushState({}, "", path);
-                  }
+                  // Update the URL
+                  window.history.pushState({}, '', path);
+                  // Force a re-render to trigger the scroll effect in SinglePageLayout
+                  window.dispatchEvent(new PopStateEvent('popstate'));
                 }}
               >
                 {label}
