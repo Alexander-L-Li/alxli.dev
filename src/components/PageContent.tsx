@@ -10,7 +10,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 
 export const HomeContent = () => (
-  <div className="max-w-6xl mx-48 py-28">
+  <div className="max-w-6xl mx-48 py-32">
     <div className="flex flex-col items-start text-left max-w-6xl space-y-6">
       <img
         src="/headshot.jpg"
@@ -54,14 +54,6 @@ export const HomeContent = () => (
 export const ProjectsContent = () => {
   const projects = [
     {
-      title: "Coming Soon...",
-      description: "",
-      technologies: [""],
-      image:
-        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=250&fit=crop",
-      link: "#",
-    },
-    {
       title: "Chilldeck DJ",
       description:
         "Won 2nd Place (out of 60 projects) in MIT’s Web Lab Hackathon & received Best Futuristic UI Design. Deployed full-stack web app providing accessible, easy-to-use interface for multiple track audio mixing.",
@@ -75,7 +67,7 @@ export const ProjectsContent = () => {
         "Figma",
       ],
       image: "/docs/assets/chilldeck.png",
-      link: "chilldeck.onrender.com",
+      link: "https://chilldeck.onrender.com",
     },
     {
       title: "ManusMIDI Digital Instrument",
@@ -90,12 +82,20 @@ export const ProjectsContent = () => {
         "Docker",
       ],
       image: "/docs/assets/ManusMIDI.png",
-      link: "manusmidi.onrender.com",
+      link: "https://manusmidi.onrender.com",
+    },
+    {
+      title: "Coming Soon...",
+      description: "",
+      technologies: [""],
+      image:
+        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=250&fit=crop",
+      link: "#",
     },
   ];
 
   return (
-    <div className="max-w-6xl mx-48 py-48">
+    <div className="max-w-6xl mx-48">
       <div className="text-center mb-12">
         <h1 className="text-3xl font-semibold text-foreground mb-4">
           Projects
@@ -305,7 +305,7 @@ export const ResearchContent = () => {
   ];
 
   return (
-    <div className="max-w-6xl mx-48 py-48">
+    <div className="max-w-6xl mx-48 py-32">
       <div className="text-center mb-12">
         <h1 className="text-3xl font-semibold text-foreground mb-4">
           Research
@@ -352,7 +352,7 @@ export const ResearchContent = () => {
 };
 
 export const ResumeContent = () => (
-  <div className="max-w-6xl mx-48 py-48">
+  <div className="max-w-6xl mx-48 py-12">
     <div className="text-center mb-12">
       <h1 className="text-3xl font-semibold text-foreground mb-8">Resume</h1>
       <a

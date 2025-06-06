@@ -13,14 +13,14 @@ interface NavigationProps {
 }
 
 const Navigation = ({ currentSection, sections }: NavigationProps) => {
-  const navItems = sections.map(section => ({
+  const navItems = sections.map((section) => ({
     path: section.path,
     label: section.label,
-    id: section.id
+    id: section.id,
   }));
 
   return (
-    <nav className="fixed top-0 right-28 z-50 h-screen flex flex-col items-center justify-center px-4">
+    <nav className="fixed top-0 right-28 z-50 h-screen flex-col items-center justify-center px-4 hidden md:flex">
       <div className="flex flex-col items-center">
         {/* Top circle */}
         <div className="w-2 h-2 rounded-full bg-[#7A8271] mb-2" />
@@ -39,10 +39,23 @@ const Navigation = ({ currentSection, sections }: NavigationProps) => {
                     : "text-black opacity-25"
                 )}
                 onClick={(e) => {
-                  // Prevent default to handle scrolling in parent
                   e.preventDefault();
-                  window.history.pushState({}, '', path);
-                  window.dispatchEvent(new Event('popstate'));
+                  // Scroll to the section with offset for header
+                  const section = document.getElementById(sections[index].id);
+                  if (section) {
+                    const headerOffset = 80; // Adjust this value based on your header height
+                    const elementPosition = section.getBoundingClientRect().top;
+                    const offsetPosition =
+                      elementPosition + window.pageYOffset - headerOffset;
+
+                    window.scrollTo({
+                      top: offsetPosition,
+                      behavior: "smooth",
+                    });
+
+                    // Update URL
+                    window.history.pushState({}, "", path);
+                  }
                 }}
               >
                 {label}
