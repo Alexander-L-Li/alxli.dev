@@ -1,21 +1,21 @@
-import { Instagram, Linkedin, Youtube } from "lucide-react";
+import { Instagram, Linkedin, Github } from "lucide-react";
 
 const SocialLinks = () => {
   const socialLinks = [
-    {
-      icon: Instagram,
-      href: "https://instagram.com/alecss_li",
-      label: "Instagram",
-    },
     {
       icon: Linkedin,
       href: "https://linkedin.com/in/alexander-l-li",
       label: "LinkedIn",
     },
     {
-      icon: Youtube,
-      href: "https://youtube.com/@alecsli",
-      label: "YouTube",
+      icon: Instagram,
+      href: "https://instagram.com/alecss_li",
+      label: "Instagram",
+    },
+    {
+      icon: Github,
+      href: "https://github.com/Alexander-L-Li",
+      label: "Github",
     },
   ];
 
