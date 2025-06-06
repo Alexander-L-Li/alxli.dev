@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { cn } from "@/lib/utils";
 
 interface NavItem {
@@ -12,7 +12,8 @@ interface NavigationProps {
   sections: NavItem[];
 }
 
-const Navigation = ({ currentSection, sections }: NavigationProps) => {
+export const Navigation = ({ currentSection, sections }: NavigationProps) => {
+  const navigate = useNavigate();
   const navItems = sections.map((section) => ({
     path: section.path,
     label: section.label,
@@ -41,9 +42,20 @@ const Navigation = ({ currentSection, sections }: NavigationProps) => {
                 onClick={(e) => {
                   e.preventDefault();
                   // Update the URL
-                  window.history.pushState({}, '', path);
-                  // Force a re-render to trigger the scroll effect in SinglePageLayout
-                  window.dispatchEvent(new PopStateEvent('popstate'));
+                  navigate(path);
+                  // Scroll to section with smooth behavior
+                  const section = document.getElementById(sections[index].id);
+                  if (section) {
+                    const headerOffset = 80;
+                    const elementPosition = section.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                    
+                    // Only scroll if this is a navigation click, not page load
+                    window.scrollTo({
+                      top: offsetPosition,
+                      behavior: 'smooth'
+                    });
+                  }
                 }}
               >
                 {label}

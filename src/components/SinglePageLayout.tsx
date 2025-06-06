@@ -59,54 +59,14 @@ const SinglePageLayout = () => {
 
   // Handle direct navigation to routes
   useEffect(() => {
-    // Function to handle scroll to section
-    const scrollToSection = (sectionId: string) => {
-      const sectionElement = document.getElementById(sectionId);
-      if (sectionElement) {
-        const headerOffset = 80; // Should match the value in Navigation.tsx
-        const elementPosition = sectionElement.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: 'smooth'
-        });
-      }
-    };
-
-    // Find the section index based on the current path
+    const currentPath = window.location.pathname;
     const sectionIndex = sections.findIndex(
-      (section) =>
-        section.path === location.pathname ||
-        (section.path !== "/" && location.pathname.startsWith(section.path))
+      (section) => 
+        section.path === currentPath ||
+        (section.path !== '/' && currentPath.startsWith(section.path))
     );
-
-    // Default to home if no matching section found
-    const targetSection = sectionIndex !== -1 ? sectionIndex : 0;
-    const targetSectionId = sections[targetSection].id;
-    
-    // Update current section state
-    setCurrentSection(targetSection);
-    
-    // Update URL without adding to history if needed
-    if (location.pathname !== sections[targetSection].path) {
-      navigate(sections[targetSection].path, { replace: true });
-    }
-
-    // Small timeout to ensure the DOM is ready
-    const scrollTimer = setTimeout(() => {
-      setIsScrolling(true);
-      scrollToSection(targetSectionId);
-      
-      // Reset scrolling flag after animation completes
-      if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
-      scrollTimeout.current = setTimeout(() => {
-        setIsScrolling(false);
-      }, 1000);
-    }, 100);
-
-    return () => clearTimeout(scrollTimer);
-  }, [location.pathname, navigate]);
+    setCurrentSection(sectionIndex !== -1 ? sectionIndex : 0);
+  }, [sections]);
 
   // Clean up timeout on unmount
   useEffect(() => {
