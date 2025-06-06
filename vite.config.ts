@@ -5,17 +5,22 @@ import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
+  // For GitHub Pages, set base to your repository name if using a custom domain
+  // or to '/repository-name/' if using github.io/repository-name
   base: "/",
   build: {
     outDir: "docs",
     emptyOutDir: true,
+    // Generate source maps for better debugging
+    sourcemap: true,
     rollupOptions: {
       output: {
-        // Copy _redirects file to the output directory
-        manualChunks: undefined,
+        // Ensure proper handling of entry files
+        entryFileNames: 'assets/[name]-[hash].js',
+        chunkFileNames: 'assets/[name]-[hash].js',
         assetFileNames: (assetInfo) => {
-          // Keep the original file name for _redirects
-          if (assetInfo.name === '_redirects') return '[name][extname]';
+          // Keep the original file name for _redirects and 404.html
+          if (assetInfo.name === '_redirects' || assetInfo.name === '404.html') return '[name][extname]';
           return 'assets/[name]-[hash][extname]';
         },
       },
