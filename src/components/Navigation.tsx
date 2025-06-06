@@ -1,15 +1,23 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
 
-const Navigation = () => {
-  const location = useLocation();
+interface NavItem {
+  path: string;
+  label: string;
+  id: string;
+}
 
-  const navItems = [
-    { path: "/", label: "Home" },
-    { path: "/projects", label: "Projects" },
-    { path: "/research", label: "Research" },
-    { path: "/resume", label: "Resume" },
-  ];
+interface NavigationProps {
+  currentSection: number;
+  sections: NavItem[];
+}
+
+const Navigation = ({ currentSection, sections }: NavigationProps) => {
+  const navItems = sections.map(section => ({
+    path: section.path,
+    label: section.label,
+    id: section.id
+  }));
 
   return (
     <nav className="fixed top-0 right-28 z-50 h-screen flex flex-col items-center justify-center px-4">
@@ -18,7 +26,7 @@ const Navigation = () => {
         <div className="w-2 h-2 rounded-full bg-[#7A8271] mb-2" />
 
         {navItems.map(({ path, label }, index) => {
-          const isActive = location.pathname === path;
+          const isActive = currentSection === index;
           return (
             <div key={path} className="flex flex-col items-center">
               {/* Label */}
@@ -27,9 +35,15 @@ const Navigation = () => {
                 className={cn(
                   "text-sm font-medium transition-colors hover:text-forest duration-200 px-2",
                   isActive
-                    ? "text-forest text-bold border-forest"
+                    ? "text-forest font-bold border-forest"
                     : "text-black opacity-25"
                 )}
+                onClick={(e) => {
+                  // Prevent default to handle scrolling in parent
+                  e.preventDefault();
+                  window.history.pushState({}, '', path);
+                  window.dispatchEvent(new Event('popstate'));
+                }}
               >
                 {label}
               </Link>
