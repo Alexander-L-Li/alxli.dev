@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
 
 interface NavItem {
@@ -12,8 +12,7 @@ interface NavigationProps {
   sections: NavItem[];
 }
 
-export const Navigation = ({ currentSection, sections }: NavigationProps) => {
-  const navigate = useNavigate();
+const Navigation = ({ currentSection, sections }: NavigationProps) => {
   const navItems = sections.map((section) => ({
     path: section.path,
     label: section.label,
@@ -40,23 +39,22 @@ export const Navigation = ({ currentSection, sections }: NavigationProps) => {
                     : "text-black opacity-25"
                 )}
                 onClick={(e) => {
-                  // Only prevent default if it's not the current section
-                  if (!isActive) {
-                    e.preventDefault();
-                    // Update the URL without adding to history
-                    window.history.replaceState({}, '', path);
-                    // Scroll to section with smooth behavior
-                    const section = document.getElementById(sections[index].id);
-                    if (section) {
-                      const headerOffset = 80;
-                      const elementPosition = section.getBoundingClientRect().top;
-                      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-                      
-                      window.scrollTo({
-                        top: offsetPosition,
-                        behavior: 'smooth'
-                      });
-                    }
+                  e.preventDefault();
+                  // Scroll to the section with offset for header
+                  const section = document.getElementById(sections[index].id);
+                  if (section) {
+                    const headerOffset = 80; // Adjust this value based on your header height
+                    const elementPosition = section.getBoundingClientRect().top;
+                    const offsetPosition =
+                      elementPosition + window.pageYOffset - headerOffset;
+
+                    window.scrollTo({
+                      top: offsetPosition,
+                      behavior: "smooth",
+                    });
+
+                    // Update URL
+                    window.history.pushState({}, "", path);
                   }
                 }}
               >

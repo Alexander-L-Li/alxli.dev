@@ -3,12 +3,12 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "http://alxli.dev/",
+  "homepage": "https://alxli.dev/",
   "scripts": {
     "dev": "vite",
-    "build": "vite build --outDir docs && node copy-404.js",
+    "build": "vite build --outDir docs",
     "deploy": "npm run build && gh-pages -d docs",
-    "build:dev": "vite build --mode development && node copy-404.js",
+    "build:dev": "vite build --mode development",
     "lint": "eslint .",
     "preview": "vite preview"
   },
