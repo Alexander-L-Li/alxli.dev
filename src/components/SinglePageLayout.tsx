@@ -59,13 +59,34 @@ const SinglePageLayout = () => {
 
   // Handle direct navigation to routes
   useEffect(() => {
-    const currentPath = window.location.pathname;
-    const sectionIndex = sections.findIndex(
-      (section) => 
-        section.path === currentPath ||
-        (section.path !== '/' && currentPath.startsWith(section.path))
-    );
-    setCurrentSection(sectionIndex !== -1 ? sectionIndex : 0);
+    // Only run this once on mount
+    const handleInitialRoute = () => {
+      const currentPath = window.location.pathname;
+      const sectionIndex = sections.findIndex(
+        (section) => 
+          section.path === currentPath ||
+          (section.path !== '/' && currentPath.startsWith(section.path))
+      );
+      
+      if (sectionIndex !== -1) {
+        setCurrentSection(sectionIndex);
+        // Small delay to ensure the DOM is ready
+        setTimeout(() => {
+          const section = document.getElementById(sections[sectionIndex].id);
+          if (section) {
+            const headerOffset = 80;
+            const elementPosition = section.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: 'auto' // Use 'auto' for initial load
+            });
+          }
+        }, 100);
+      }
+    };
+
+    handleInitialRoute();
   }, [sections]);
 
   // Clean up timeout on unmount

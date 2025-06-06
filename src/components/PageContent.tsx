@@ -10,14 +10,14 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 
 export const HomeContent = () => (
-  <div className="lg:max-w-6xl sm:max-w-3xl mx-48 py-28">
-    <div className="flex flex-col items-start text-left max-w-6xl space-y-6">
+  <div className="lg:max-w-6xl lg:mx-48 lg:py-28 sm:w-full sm:px-4">
+    <div className="flex flex-col items-start text-left max-w-6xl sm:w-full sm:px-4 sm:space-y-6">
       <img
         src="/headshot.jpg"
         alt="Profile"
         className="w-72 h-72 object-cover border-4 border-muted shadow-lg"
       />
-      <h1 className="text-4xl font-semibold text-foreground">
+      <h1 className="sm:py-4 text-4xl font-semibold text-foreground">
         Alexander L. Li
       </h1>
       <p className="text-xl text-yellow-900 font-medium">AI + Math @ MIT</p>
@@ -95,7 +95,7 @@ export const ProjectsContent = () => {
   ];
 
   return (
-    <div className="max-w-6xl mx-48">
+    <div className="lg:max-w-6xl lg:mx-48 sm:w-full sm:px-4">
       <div className="text-center mb-12">
         <h1 className="text-3xl font-semibold text-foreground mb-4">
           Projects
@@ -305,7 +305,7 @@ export const ResearchContent = () => {
   ];
 
   return (
-    <div className="max-w-6xl mx-48 py-32">
+    <div className="lg:max-w-6xl lg:mx-48 lg:py-32 sm:w-full sm:px-4">
       <div className="text-center mb-12">
         <h1 className="text-3xl font-semibold text-foreground mb-4">
           Research
@@ -352,7 +352,7 @@ export const ResearchContent = () => {
 };
 
 export const ResumeContent = () => (
-  <div className="max-w-6xl mx-48 py-12">
+  <div className="lg:max-w-6xl lg:mx-48 lg:py-12 sm:w-full sm:px-4">
     <div className="text-center mb-12">
       <h1 className="text-3xl font-semibold text-foreground mb-8">Resume</h1>
       <a

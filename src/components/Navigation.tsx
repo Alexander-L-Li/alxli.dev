@@ -40,21 +40,23 @@ export const Navigation = ({ currentSection, sections }: NavigationProps) => {
                     : "text-black opacity-25"
                 )}
                 onClick={(e) => {
-                  e.preventDefault();
-                  // Update the URL
-                  navigate(path);
-                  // Scroll to section with smooth behavior
-                  const section = document.getElementById(sections[index].id);
-                  if (section) {
-                    const headerOffset = 80;
-                    const elementPosition = section.getBoundingClientRect().top;
-                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-                    
-                    // Only scroll if this is a navigation click, not page load
-                    window.scrollTo({
-                      top: offsetPosition,
-                      behavior: 'smooth'
-                    });
+                  // Only prevent default if it's not the current section
+                  if (!isActive) {
+                    e.preventDefault();
+                    // Update the URL without adding to history
+                    window.history.replaceState({}, '', path);
+                    // Scroll to section with smooth behavior
+                    const section = document.getElementById(sections[index].id);
+                    if (section) {
+                      const headerOffset = 80;
+                      const elementPosition = section.getBoundingClientRect().top;
+                      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                      
+                      window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                      });
+                    }
                   }
                 }}
               >
