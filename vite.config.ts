@@ -5,7 +5,7 @@ import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
-  base: "/alxli.dev/", // Update this to your repository name if different
+  base: "/",
   build: {
     outDir: "docs",
     emptyOutDir: true,

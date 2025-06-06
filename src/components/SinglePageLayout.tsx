@@ -31,34 +31,6 @@ const SinglePageLayout = () => {
     { path: "/resume", component: <Resume />, id: "resume", label: "Resume" },
   ];
 
-  // Handle direct navigation to routes
-  useEffect(() => {
-    // Get the current path and find the matching section
-    const currentPath = location.pathname.replace(/^\/alxli.dev/, ''); // Remove base path for GitHub Pages
-    const sectionIndex = sections.findIndex(section => section.path === currentPath || 
-      (currentPath === '' && section.path === '/'));
-    
-    if (sectionIndex !== -1 && sectionIndex !== currentSection) {
-      setCurrentSection(sectionIndex);
-      // Scroll to the section with offset for header
-      const section = document.getElementById(sections[sectionIndex].id);
-      if (section) {
-        const headerOffset = 80;
-        const elementPosition = section.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-        
-        setIsScrolling(true);
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: 'smooth'
-        });
-        
-        // Reset scrolling flag after animation
-        setTimeout(() => setIsScrolling(false), 1000);
-      }
-    }
-  }, [location.pathname]);
-
   // Handle scroll events
   useEffect(() => {
     const handleScroll = () => {
@@ -76,7 +48,6 @@ const SinglePageLayout = () => {
         setCurrentSection(sectionIndex);
         const newPath = sections[sectionIndex].path;
         if (location.pathname !== newPath) {
-          // Use replace: true to avoid adding to browser history
           navigate(newPath, { replace: true });
         }
       }
