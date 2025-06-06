@@ -31,6 +31,34 @@ const SinglePageLayout = () => {
     { path: "/resume", component: <Resume />, id: "resume", label: "Resume" },
   ];
 
+  // Handle direct navigation to routes
+  useEffect(() => {
+    // Get the current path and find the matching section
+    const currentPath = location.pathname.replace(/^\/alxli.dev/, ''); // Remove base path for GitHub Pages
+    const sectionIndex = sections.findIndex(section => section.path === currentPath || 
+      (currentPath === '' && section.path === '/'));
+    
+    if (sectionIndex !== -1 && sectionIndex !== currentSection) {
+      setCurrentSection(sectionIndex);
+      // Scroll to the section with offset for header
+      const section = document.getElementById(sections[sectionIndex].id);
+      if (section) {
+        const headerOffset = 80;
+        const elementPosition = section.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+        
+        setIsScrolling(true);
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+        
+        // Reset scrolling flag after animation
+        setTimeout(() => setIsScrolling(false), 1000);
+      }
+    }
+  }, [location.pathname]);
+
   // Handle scroll events
   useEffect(() => {
     const handleScroll = () => {
@@ -48,6 +76,7 @@ const SinglePageLayout = () => {
         setCurrentSection(sectionIndex);
         const newPath = sections[sectionIndex].path;
         if (location.pathname !== newPath) {
+          // Use replace: true to avoid adding to browser history
           navigate(newPath, { replace: true });
         }
       }
@@ -59,35 +88,46 @@ const SinglePageLayout = () => {
 
   // Handle direct navigation to routes
   useEffect(() => {
-    // Only run this once on mount
-    const handleInitialRoute = () => {
-      const currentPath = window.location.pathname;
-      const sectionIndex = sections.findIndex(
-        (section) => 
-          section.path === currentPath ||
-          (section.path !== '/' && currentPath.startsWith(section.path))
-      );
-      
-      if (sectionIndex !== -1) {
-        setCurrentSection(sectionIndex);
-        // Small delay to ensure the DOM is ready
-        setTimeout(() => {
-          const section = document.getElementById(sections[sectionIndex].id);
-          if (section) {
-            const headerOffset = 80;
-            const elementPosition = section.getBoundingClientRect().top;
-            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-            window.scrollTo({
-              top: offsetPosition,
-              behavior: 'auto' // Use 'auto' for initial load
-            });
-          }
-        }, 100);
-      }
-    };
+    // Find the section index based on the current path
+    const sectionIndex = sections.findIndex(
+      (section) =>
+        section.path === location.pathname ||
+        (section.path !== "/" && location.pathname.startsWith(section.path))
+    );
 
-    handleInitialRoute();
-  }, [sections]);
+    // Default to home if no matching section found
+    const targetSection = sectionIndex !== -1 ? sectionIndex : 0;
+
+    // Only update if we need to change sections
+    if (targetSection !== currentSection || location.pathname !== sections[targetSection].path) {
+      setIsScrolling(true);
+      setCurrentSection(targetSection);
+
+      // Update URL without adding to history
+      if (location.pathname !== sections[targetSection].path) {
+        navigate(sections[targetSection].path, { replace: true });
+      }
+
+      // Find the section element and scroll to it with offset
+      const sectionElement = document.getElementById(sections[targetSection].id);
+      if (sectionElement) {
+        const headerOffset = 80; // Should match the value in Navigation.tsx
+        const elementPosition = sectionElement.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth"
+        });
+      }
+
+      // Reset scrolling flag after animation completes
+      if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
+      scrollTimeout.current = setTimeout(() => {
+        setIsScrolling(false);
+      }, 1000);
+    }
+  }, [location.pathname]);
 
   // Clean up timeout on unmount
   useEffect(() => {

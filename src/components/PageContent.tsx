@@ -17,10 +17,12 @@ export const HomeContent = () => (
         alt="Profile"
         className="w-72 h-72 object-cover border-4 border-muted shadow-lg"
       />
-      <h1 className="sm:py-4 text-4xl font-semibold text-foreground">
+      <h1 className="sm:pt-4 sm:text-3xl text-4xl font-semibold text-foreground">
         Alexander L. Li
       </h1>
-      <p className="text-xl text-yellow-900 font-medium">AI + Math @ MIT</p>
+      <p className="sm:text-0.5xl lg:text-xl text-yellow-900 font-medium">
+        AI + Math @ MIT
+      </p>
       <div className="text-black leading-relaxed space-y-4">
         <p>
           Hello! I'm an undergraduate student studying Artificial Intelligence
