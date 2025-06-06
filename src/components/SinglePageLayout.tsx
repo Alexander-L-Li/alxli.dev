@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useEffect, useState, useRef } from "react";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import Navigation from "./Navigation";
 import Index from "@/pages/Index";
 import Projects from "@/pages/Projects";
@@ -10,17 +10,32 @@ const SinglePageLayout = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [currentSection, setCurrentSection] = useState(0);
+  const [isScrolling, setIsScrolling] = useState(false);
+  const scrollTimeout = useRef<NodeJS.Timeout>();
 
   const sections = [
-    { path: "/", component: <Index />, id: "home" },
-    { path: "/projects", component: <Projects />, id: "projects" },
-    { path: "/research", component: <Research />, id: "research" },
-    { path: "/resume", component: <Resume />, id: "resume" },
+    { path: "/", component: <Index />, id: "home", label: "Home" },
+    {
+      path: "/projects",
+      component: <Projects />,
+      id: "projects",
+      label: "Projects",
+    },
+    {
+      path: "/research",
+      component: <Research />,
+      id: "research",
+      label: "Research",
+    },
+    { path: "/resume", component: <Resume />, id: "resume", label: "Resume" },
   ];
 
+  // Handle scroll events
   useEffect(() => {
     const handleScroll = () => {
-      const scrollPosition = window.scrollY;
+      if (isScrolling) return;
+
+      const scrollPosition = window.scrollY + 80; // Account for header
       const windowHeight = window.innerHeight;
       const sectionIndex = Math.round(scrollPosition / windowHeight);
 
@@ -37,37 +52,69 @@ const SinglePageLayout = () => {
       }
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [currentSection, location.pathname, navigate]);
+  }, [currentSection, location.pathname, navigate, isScrolling]);
 
-  // Set initial section based on current route and always navigate to "/"
+  // Handle direct navigation to routes
   useEffect(() => {
+    // Find the section index based on the current path
     const sectionIndex = sections.findIndex(
-      (section) => section.path === location.pathname
+      (section) =>
+        section.path === location.pathname ||
+        (section.path !== "/" && location.pathname.startsWith(section.path))
     );
-    if (sectionIndex !== -1 && sectionIndex !== currentSection) {
-      setCurrentSection(sectionIndex);
-      navigate("/", { replace: true });
+
+    // Default to home if no matching section found
+    const targetSection = sectionIndex !== -1 ? sectionIndex : 0;
+
+    // Only update if we need to change sections
+    if (
+      targetSection !== currentSection ||
+      location.pathname !== sections[targetSection].path
+    ) {
+      setIsScrolling(true);
+      setCurrentSection(targetSection);
+
+      // Update URL without adding to history
+      if (location.pathname !== sections[targetSection].path) {
+        navigate(sections[targetSection].path, { replace: true });
+      }
+
+      // Scroll to the section
       window.scrollTo({
-        top: sectionIndex * window.innerHeight,
-        behavior: "auto",
+        top: targetSection * window.innerHeight,
+        behavior: "smooth",
       });
+
+      // Reset scrolling flag after animation completes
+      if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
+      scrollTimeout.current = setTimeout(() => {
+        setIsScrolling(false);
+      }, 1000);
     }
   }, [location.pathname]);
 
+  // Clean up timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
+    };
+  }, []);
+
   return (
     <div className="bg-background">
-      <Navigation />
+      <Navigation currentSection={currentSection} sections={sections} />
       <div className="snap-y snap-mandatory">
         {sections.map((section, index) => (
-          <div
+          <section
             key={section.id}
+            id={section.id}
             className="min-h-screen snap-start relative"
             style={{ paddingTop: index === 0 ? "80px" : "0" }}
           >
             <div className="animate-fade-in">{section.component}</div>
-          </div>
+          </section>
         ))}
       </div>
     </div>
