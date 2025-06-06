@@ -66,7 +66,7 @@ export const ProjectsContent = () => {
         "REST API",
         "Figma",
       ],
-      image: "/docs/assets/chilldeck.png",
+      image: "/chilldeck.png",
       link: "https://chilldeck.onrender.com",
     },
     {
@@ -81,7 +81,7 @@ export const ProjectsContent = () => {
         "Flask",
         "Docker",
       ],
-      image: "/docs/assets/ManusMIDI.png",
+      image: "/ManusMIDI.png",
       link: "https://manusmidi.onrender.com",
     },
     {
