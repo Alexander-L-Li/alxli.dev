@@ -96,22 +96,23 @@
     @apply text-[rgb(45_80_22)];
   }
 
-  /* Responsive adjustments */
-  @media (max-width: 768px) {
-    body {
-      @apply text-sm;
+  /* Mobile-specific styles */
+  @media (max-width: 767px) {
+    /* Hide navigation on mobile */
+    nav {
+      display: none;
     }
-    .container {
-      @apply px-4;
-    }
-  }
 
-  @media (max-width: 480px) {
-    body {
-      @apply text-xs;
+    /* Improve touch targets */
+    button,
+    a[role="button"] {
+      min-height: 44px;
+      min-width: 44px;
     }
-    .container {
-      @apply px-2;
+
+    /* Adjust section padding for mobile */
+    section {
+      padding: 1.5rem !important;
     }
   }
 }
