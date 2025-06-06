@@ -41,16 +41,17 @@ const SinglePageLayout = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [currentSection, location.pathname, navigate]);
 
-  // Set initial section based on current route
+  // Set initial section based on current route and always navigate to "/"
   useEffect(() => {
     const sectionIndex = sections.findIndex(
       (section) => section.path === location.pathname
     );
     if (sectionIndex !== -1 && sectionIndex !== currentSection) {
       setCurrentSection(sectionIndex);
+      navigate("/", { replace: true });
       window.scrollTo({
         top: sectionIndex * window.innerHeight,
-        behavior: "smooth",
+        behavior: "auto",
       });
     }
   }, [location.pathname]);

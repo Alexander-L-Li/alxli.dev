@@ -42,6 +42,8 @@
     --sidebar-accent-foreground: 24 24 27;
     --sidebar-border: 228 228 231;
     --sidebar-ring: 45 80 22;
+
+    --forest-dark: #1f3610;
   }
 
   .dark {
@@ -85,12 +87,8 @@
 }
 
 @layer base {
-  * {
-    @apply border-border;
-  }
-
   body {
-    @apply bg-[rgb(45_80_22)] text-[rgb(45_80_22)] font-mono;
+    @apply font-mono;
   }
 
   html {
