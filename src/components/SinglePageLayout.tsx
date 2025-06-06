@@ -59,6 +59,21 @@ const SinglePageLayout = () => {
 
   // Handle direct navigation to routes
   useEffect(() => {
+    // Function to handle scroll to section
+    const scrollToSection = (sectionId: string) => {
+      const sectionElement = document.getElementById(sectionId);
+      if (sectionElement) {
+        const headerOffset = 80; // Should match the value in Navigation.tsx
+        const elementPosition = sectionElement.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+      }
+    };
+
     // Find the section index based on the current path
     const sectionIndex = sections.findIndex(
       (section) =>
@@ -68,6 +83,7 @@ const SinglePageLayout = () => {
 
     // Default to home if no matching section found
     const targetSection = sectionIndex !== -1 ? sectionIndex : 0;
+    const targetSectionId = sections[targetSection].id;
     
     // Update current section state
     setCurrentSection(targetSection);
@@ -77,25 +93,10 @@ const SinglePageLayout = () => {
       navigate(sections[targetSection].path, { replace: true });
     }
 
-    // Scroll to the section
-    const scrollToSection = () => {
-      const sectionElement = document.getElementById(sections[targetSection].id);
-      if (sectionElement) {
-        const headerOffset = 80; // Should match the value in Navigation.tsx
-        const elementPosition = sectionElement.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: "smooth"
-        });
-      }
-    };
-
     // Small timeout to ensure the DOM is ready
     const scrollTimer = setTimeout(() => {
       setIsScrolling(true);
-      scrollToSection();
+      scrollToSection(targetSectionId);
       
       // Reset scrolling flag after animation completes
       if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
@@ -105,7 +106,7 @@ const SinglePageLayout = () => {
     }, 100);
 
     return () => clearTimeout(scrollTimer);
-  }, [location.pathname]);
+  }, [location.pathname, navigate]);
 
   // Clean up timeout on unmount
   useEffect(() => {

@@ -10,8 +10,8 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 
 export const HomeContent = () => (
-  <div className="max-w-6xl mx-48 py-32">
-    <div className="flex flex-col items-start text-left max-w-6xl space-y-6">
+  <div className="w-full px-4 sm:px-6 md:px-8 lg:px-12 xl:px-24 2xl:px-32 py-12 sm:py-16 md:py-20 lg:py-24 xl:py-32">
+    <div className="flex flex-col items-start text-left w-full space-y-4 sm:space-y-6">
       <img
         src="/headshot.jpg"
         alt="Profile"
@@ -95,14 +95,14 @@ export const ProjectsContent = () => {
   ];
 
   return (
-    <div className="max-w-6xl mx-48">
-      <div className="text-center mb-12">
-        <h1 className="text-3xl font-semibold text-foreground mb-4">
+    <div className="w-full px-4 sm:px-6 md:px-8 lg:px-12 xl:px-24 2xl:px-32 py-12 sm:py-16 md:py-20 lg:py-24">
+      <div className="text-center mb-8 sm:mb-12">
+        <h1 className="text-2xl sm:text-3xl font-semibold text-foreground mb-2 sm:mb-4">
           Projects
         </h1>
       </div>
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
         {projects.map((project, index) =>
           project.title === "Chilldeck DJ" ? (
             <a
@@ -305,9 +305,9 @@ export const ResearchContent = () => {
   ];
 
   return (
-    <div className="max-w-6xl mx-48 py-32">
-      <div className="text-center mb-12">
-        <h1 className="text-3xl font-semibold text-foreground mb-4">
+    <div className="w-full px-4 sm:px-6 md:px-8 lg:px-12 xl:px-24 2xl:px-32 py-12 sm:py-16 md:py-20 lg:py-24">
+      <div className="text-center mb-8 sm:mb-12">
+        <h1 className="text-2xl sm:text-3xl font-semibold text-foreground mb-2 sm:mb-4">
           Research
         </h1>
       </div>
@@ -352,9 +352,9 @@ export const ResearchContent = () => {
 };
 
 export const ResumeContent = () => (
-  <div className="max-w-6xl mx-48 py-12">
-    <div className="text-center mb-12">
-      <h1 className="text-3xl font-semibold text-foreground mb-8">Resume</h1>
+  <div className="w-full px-4 sm:px-6 md:px-8 lg:px-12 xl:px-24 2xl:px-32 py-12 sm:py-16 md:py-20 lg:py-24">
+    <div className="text-center mb-8 sm:mb-12">
+      <h1 className="text-2xl sm:text-3xl font-semibold text-foreground mb-4 sm:mb-8">Resume</h1>
       <a
         href="/docs/assets/resume.pdf"
         download

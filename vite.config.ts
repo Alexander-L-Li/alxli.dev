@@ -11,11 +11,12 @@ export default defineConfig(({ mode }) => ({
     emptyOutDir: true,
     rollupOptions: {
       output: {
-        // Copy _redirects file to the output directory
         manualChunks: undefined,
         assetFileNames: (assetInfo) => {
-          // Keep the original file name for _redirects
-          if (assetInfo.name === '_redirects') return '[name][extname]';
+          // Keep the original file name for special files
+          if (assetInfo.name === '_redirects' || assetInfo.name === '404.html') {
+            return '[name][extname]';
+          }
           return 'assets/[name]-[hash][extname]';
         },
       },
