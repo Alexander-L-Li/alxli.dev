@@ -10,12 +10,12 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 
 export const HomeContent = () => (
-  <div className="lg:max-w-6xl lg:mx-36 lg:py-28 sm:w-full sm:px-4">
+  <div className="lg:max-w-6xl lg:mx-36 lg:py-24 sm:w-full sm:px-4">
     <div className="flex flex-col items-start text-left max-w-6xl sm:w-full sm:px-4 sm:space-y-6">
       <img
         src="/headshot.jpg"
         alt="Profile"
-        className="w-84 h-84 object-cover border-4 border-muted shadow-lg"
+        className="w-80 h-80 object-cover border-4 border-muted shadow-lg"
       />
       <h1 className="sm:mt-4 sm:text-4xl lg:text-4xl font-semibold">
         Alexander L. Li
@@ -28,6 +28,12 @@ export const HomeContent = () => (
           Hello! I'm an undergraduate student studying Artificial Intelligence
           (6-4) & Mathematics (18) at MIT. Currently passionate about computer
           vision, ML engineering, and full-stack development!
+        </p>
+        <p>
+          My email:{" "}
+          <a className="italic text-blue-800" href="mailto:alxli@mit.edu">
+            alxli [at] mit [dot] edu
+          </a>
         </p>
       </div>
       <SocialLinks />
