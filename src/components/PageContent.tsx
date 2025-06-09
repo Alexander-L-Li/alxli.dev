@@ -10,20 +10,20 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 
 export const HomeContent = () => (
-  <div className="lg:max-w-6xl lg:mx-48 lg:py-28 sm:w-full sm:px-4">
+  <div className="lg:max-w-6xl lg:mx-36 lg:py-28 sm:w-full sm:px-4">
     <div className="flex flex-col items-start text-left max-w-6xl sm:w-full sm:px-4 sm:space-y-6">
       <img
         src="/headshot.jpg"
         alt="Profile"
-        className="w-72 h-72 object-cover border-4 border-muted shadow-lg"
+        className="w-84 h-84 object-cover border-4 border-muted shadow-lg"
       />
-      <h1 className="sm:pt-4 sm:text-3xl text-4xl font-semibold text-foreground">
+      <h1 className="sm:mt-4 sm:text-4xl lg:text-4xl font-semibold">
         Alexander L. Li
       </h1>
-      <p className="sm:text-0.5xl lg:text-xl text-yellow-900 font-medium">
+      <p className="sm:text-md lg:text-xl text-yellow-900 font-medium">
         AI + Math @ MIT
       </p>
-      <div className="text-black leading-relaxed space-y-4">
+      <div className="sm:text-sm lg:text-md text-black leading-relaxed space-y-4">
         <p>
           Hello! I'm an undergraduate student studying Artificial Intelligence
           (6-4) & Mathematics (18) at MIT. Currently passionate about computer
@@ -31,7 +31,7 @@ export const HomeContent = () => (
         </p>
       </div>
       <SocialLinks />
-      <div className="py-4 w-full flex flex-col items-center mt-4">
+      <div className="w-full flex flex-col items-center sm:mt-2 lg:mt-4lg:py-4">
         <svg
           className="w-8 h-8 text-black opacity-40 animate-bounce"
           fill="none"
@@ -97,7 +97,7 @@ export const ProjectsContent = () => {
   ];
 
   return (
-    <div className="lg:max-w-6xl lg:mx-48 sm:w-full sm:px-4">
+    <div className="lg:max-w-6xl lg:mx-36 sm:w-full sm:px-4">
       <div className="text-center mb-12">
         <h1 className="text-3xl font-semibold text-foreground mb-4">
           Projects
@@ -354,7 +354,7 @@ export const ResearchContent = () => {
 };
 
 export const ResumeContent = () => (
-  <div className="lg:max-w-6xl lg:mx-48 lg:py-12 sm:w-full sm:px-4">
+  <div className="lg:max-w-6xl lg:mx-36 lg:py-12 sm:w-full sm:px-4">
     <div className="text-center mb-12">
       <h1 className="text-3xl font-semibold text-foreground mb-8">Resume</h1>
       <a
