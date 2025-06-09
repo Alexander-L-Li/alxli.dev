@@ -20,7 +20,7 @@ const Navigation = ({ currentSection, sections }: NavigationProps) => {
   }));
 
   return (
-    <nav className="fixed top-0 right-28 z-50 h-screen flex-col items-center justify-center px-4 hidden md:flex">
+    <nav className="fixed top-0 right-28 z-50 h-screen flex-col items-center justify-center px-4 hidden xl:flex">
       <div className="flex flex-col items-center">
         {/* Top circle */}
         <div className="w-2 h-2 rounded-full bg-[#7A8271] mb-2" />
