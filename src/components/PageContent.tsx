@@ -313,7 +313,7 @@ export const ResearchContent = () => {
   ];
 
   return (
-    <div className="lg:max-w-6xl lg:mx-48 lg:py-32 sm:w-full sm:px-4">
+    <div className="lg:max-w-6xl lg:mx-36 lg:py-32 sm:w-full sm:px-4">
       <div className="text-center mb-12">
         <h1 className="text-3xl font-semibold text-foreground mb-4">
           Research
