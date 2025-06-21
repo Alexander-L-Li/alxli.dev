@@ -59,6 +59,23 @@ export const HomeContent = () => (
   </div>
 );
 
+export const ResumeContent = () => (
+  <div className="lg:max-w-6xl lg:mx-36 sm:w-full sm:px-4">
+    <div className="text-center mb-12">
+      <h1 className="text-4xl underline underline-offset-4 font-semibold text-foreground mb-8 pb-2">
+        Resume
+      </h1>
+      <a
+        href="docs/resume.pdf"
+        download
+        className="inline-block align-middle text-white text-center w-64 h-12 py-3 bg-green-900 rounded-lg transition duration-150 hover:bg-green-800 hover:scale-110"
+      >
+        Download PDF
+      </a>
+    </div>
+  </div>
+);
+
 export const ProjectsContent = () => {
   const projects = [
     {
@@ -105,7 +122,7 @@ export const ProjectsContent = () => {
   return (
     <div className="lg:max-w-6xl lg:mx-36 sm:w-full sm:px-4">
       <div className="text-center mb-12">
-        <h1 className="text-3xl font-semibold text-foreground mb-4">
+        <h1 className="text-4xl underline underline-offset-4 font-semibold text-foreground mb-4">
           Projects
         </h1>
       </div>
@@ -315,7 +332,7 @@ export const ResearchContent = () => {
   return (
     <div className="lg:max-w-6xl lg:mx-36 lg:py-32 sm:w-full sm:px-4">
       <div className="text-center mb-12">
-        <h1 className="text-3xl font-semibold text-foreground mb-4">
+        <h1 className="text-4xl underline underline-offset-4 font-semibold text-foreground mb-4">
           Research
         </h1>
       </div>
@@ -358,145 +375,3 @@ export const ResearchContent = () => {
     </div>
   );
 };
-
-export const ResumeContent = () => (
-  <div className="lg:max-w-6xl lg:mx-36 lg:py-12 sm:w-full sm:px-4">
-    <div className="text-center mb-12">
-      <h1 className="text-3xl font-semibold text-foreground mb-8">Resume</h1>
-      <a
-        href="/docs/assets/resume.pdf"
-        download
-        className="inline-block bg-green-900 hover:bg-green-800 text-white px-4 py-2 rounded-lg text-center"
-      >
-        Download PDF
-      </a>
-    </div>
-
-    <div className="space-y-8">
-      {/* Experience */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="text-xl">Professional Experience</CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-6">
-          <div>
-            <h3 className="font-semibold">AI/ML Research Intern</h3>
-            <p className="text-sm">
-              Air Force Research Laboratory • May 2025 - Aug 2025
-            </p>
-            <ul className="mt-2 text-sm text-black space-y-1 ml-4">
-              <li>
-                • Led cross-functional research projects with teams of 5-10
-                members
-              </li>
-              <li>
-                • Developed novel analytical methods improving efficiency by 40%
-              </li>
-              <li>• Published 8 peer-reviewed papers in top-tier journals</li>
-            </ul>
-          </div>
-          <div>
-            <h3 className="font-semibold">Software Engineer Intern</h3>
-            <p className="text-sm">Fetch.AI • Jun 2025 - Sep 2025</p>
-            <ul className="mt-2 text-sm text-black space-y-1 ml-4">
-              <li>• Conducted independent research on computational methods</li>
-              <li>• Collaborated with international research teams</li>
-              <li>• Mentored graduate students and research assistants</li>
-            </ul>
-          </div>
-          <div>
-            <h3 className="font-semibold">Data Science Intern</h3>
-            <p className="text-sm">Yoomi Health • Sep 2022 - May 2023</p>
-            <ul className="mt-2 text-sm text-black space-y-1 ml-4">
-              <li>
-                • Automated a web-scraping data collection process for pose
-                images to train Yoomi’s A.I. physical therapy model
-              </li>
-              <li>
-                • Achieved ∼15% increase in accuracy & ∼80% reduction of racial
-                bias on images with darker skin tone
-              </li>
-              <li>
-                • Utilized YOLOv5 & COCO annotations to map keypoints on both
-                human & synthetic video/image data
-              </li>
-              <li>
-                • Contributed to model that won Dr. Pepper’s Hail Mary Contest
-                sponsored by Mark Cuban for $23K
-              </li>
-            </ul>
-          </div>
-        </CardContent>
-      </Card>
-      {/* Education */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="text-xl text-forest">Education</CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          <div>
-            <h3 className="font-semibold text-foreground">
-              B.S. Candidate in Artificial Intelligence & Mathematics
-            </h3>
-            <p className="text-sm text-muted-foreground">
-              Massachusetts Institute of Technology • Exp. 2028
-            </p>
-            <p className="py-2 text-sm text-black">
-              Relevant Coursework: Computer Vision (6.8300), Machine Learning
-              (6.3900), Algorithms (6.1210), Fundamentals of Programming
-              (6.1010), Web Design Lab (6.9620), Low-level C & Assembly
-              (6.1900), Discrete Applied Mathematics (18.200), Linear Algebra
-              (18.06), Probability & Random Variables (18.600), Fundamentals of
-              Statistics (18.650)
-            </p>
-            <p className="py-2 text-sm text-black">
-              Activities: NCAA Men’s Fencing, Logarhythms A Cappella, Phi Kappa
-              Theta Fraternity, StartLabs Premier Entrepreneurship Club
-            </p>
-          </div>
-        </CardContent>
-      </Card>
-      {/* Skills */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="text-xl text-forest">
-            Technical Skills
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="grid md:grid-cols-2 gap-6">
-            <div>
-              <h4 className="font-medium text-foreground mb-2">Programming</h4>
-              <p className="text-sm text-yellow-900">
-                Python, Java, C++, JavaScript, HTML/CSS, TypeScript, SQL, R
-              </p>
-            </div>
-            <div>
-              <h4 className="font-medium text-foreground mb-2">
-                Frameworks & Tools
-              </h4>
-              <p className="text-sm text-yellow-900">
-                TensorFlow, React, Node.js, Docker, AWS, Git
-              </p>
-            </div>
-            <div>
-              <h4 className="font-medium text-foreground mb-2">
-                Research Methods
-              </h4>
-              <p className="text-sm text-yellow-900">
-                Deep Learning, Computational Methods
-              </p>
-            </div>
-            <div>
-              <h4 className="font-medium text-foreground mb-2">Languages</h4>
-              <p className="text-sm text-yellow-900">
-                English (Native), Mandarin (Professional), Spanish
-                (Conversational)
-              </p>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
-    </div>
-  </div>
-);

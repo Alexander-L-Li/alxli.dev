@@ -16,6 +16,7 @@ const SinglePageLayout = () => {
 
   const sections = [
     { path: "/", component: <Index />, id: "home", label: "Home" },
+    { path: "/resume", component: <Resume />, id: "resume", label: "Resume" },
     {
       path: "/projects",
       component: <Projects />,
@@ -28,7 +29,6 @@ const SinglePageLayout = () => {
       id: "research",
       label: "Research",
     },
-    { path: "/resume", component: <Resume />, id: "resume", label: "Resume" },
   ];
 
   // Handle scroll events
@@ -70,7 +70,10 @@ const SinglePageLayout = () => {
     const targetSection = sectionIndex !== -1 ? sectionIndex : 0;
 
     // Only update if we need to change sections
-    if (targetSection !== currentSection || location.pathname !== sections[targetSection].path) {
+    if (
+      targetSection !== currentSection ||
+      location.pathname !== sections[targetSection].path
+    ) {
       setIsScrolling(true);
       setCurrentSection(targetSection);
 
@@ -80,15 +83,18 @@ const SinglePageLayout = () => {
       }
 
       // Find the section element and scroll to it with offset
-      const sectionElement = document.getElementById(sections[targetSection].id);
+      const sectionElement = document.getElementById(
+        sections[targetSection].id
+      );
       if (sectionElement) {
         const headerOffset = 80; // Should match the value in Navigation.tsx
         const elementPosition = sectionElement.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+        const offsetPosition =
+          elementPosition + window.pageYOffset - headerOffset;
 
         window.scrollTo({
           top: offsetPosition,
-          behavior: "smooth"
+          behavior: "smooth",
         });
       }
 
@@ -117,16 +123,14 @@ const SinglePageLayout = () => {
             id={section.id}
             className={cn(
               "snap-start relative scroll-mt-20",
-              index === 0 ? "min-h-screen" : "min-h-[80vh] py-12"
+              index === 0 ? "py-12" : "py-48"
             )}
-            style={{ 
-              paddingTop: index === 0 ? "80px" : index === 1 ? "6rem" : "2rem",
-              scrollMarginTop: "80px"
+            style={{
+              paddingTop: index === 0 ? "80px" : index === 1 ? "4rem" : "2rem",
+              scrollMarginTop: "80px",
             }}
           >
-            <div className="animate-fade-in">
-              {section.component}
-            </div>
+            <div className="animate-fade-in">{section.component}</div>
           </section>
         ))}
       </div>
