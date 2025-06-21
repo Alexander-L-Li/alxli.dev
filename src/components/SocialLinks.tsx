@@ -27,7 +27,7 @@ const SocialLinks = () => {
           href={href}
           target="_blank"
           rel="noopener noreferrer"
-          className="p-1 text-foreground hover:bg-forest hover:text-white transition-all duration-200 rounded-lg group"
+          className="text-black text-foreground hover:bg-forest hover:text-green-900 transition duration-300 rounded-lg group"
           aria-label={label}
         >
           <Icon
