@@ -1,8 +1,8 @@
 import { useEffect, useState, useRef } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { cn } from "@/lib/utils";
-import Navigation from "./Navigation";
-import Index from "@/pages/Index";
+import Navigation from "../components/Navigation";
+import Home from "@/pages/Home";
 import Projects from "@/pages/Projects";
 import Research from "@/pages/Research";
 import Resume from "@/pages/Resume";
@@ -15,7 +15,7 @@ const SinglePageLayout = () => {
   const scrollTimeout = useRef<NodeJS.Timeout>();
 
   const sections = [
-    { path: "/", component: <Index />, id: "home", label: "Home" },
+    { path: "/", component: <Home />, id: "home", label: "Home" },
     { path: "/resume", component: <Resume />, id: "resume", label: "Resume" },
     {
       path: "/projects",
