@@ -19,10 +19,10 @@ const Home = () => {
           <p>
             Hello! I'm an undergraduate student studying Artificial Intelligence
             (6-4) & Mathematics (18) at MIT. Currently passionate about computer
-            vision, ML engineering, and full-stack development!
+            vision, ML engineering, startups, and full-stack development!
           </p>
           <p>
-            My email:{" "}
+            Feel free to reach out:{" "}
             <a className="italic text-blue-800" href="mailto:alxli@mit.edu">
               alxli [at] mit [dot] edu
             </a>
