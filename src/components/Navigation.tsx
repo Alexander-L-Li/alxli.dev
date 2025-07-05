@@ -26,17 +26,18 @@ const Navigation = ({ currentSection, sections }: NavigationProps) => {
     if (location.pathname !== path) {
       navigate(path);
     }
-    
+
     // Scroll to the section with offset for header
     const section = document.getElementById(sections[index].id);
     if (section) {
       const headerOffset = 80; // Adjust this value based on your header height
       const elementPosition = section.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-      
+      const offsetPosition =
+        elementPosition + window.pageYOffset - headerOffset;
+
       window.scrollTo({
         top: offsetPosition,
-        behavior: 'smooth'
+        behavior: "smooth",
       });
     }
   };
@@ -44,9 +45,6 @@ const Navigation = ({ currentSection, sections }: NavigationProps) => {
   return (
     <nav className="fixed top-0 right-28 z-50 h-screen flex-col items-center justify-center px-4 hidden xl:flex">
       <div className="flex flex-col items-center">
-        {/* Top circle */}
-        <div className="w-2 h-2 rounded-full bg-[#7A8271] mb-2" />
-
         {navItems.map(({ path, label }, index) => {
           const isActive = currentSection === index;
           return (
@@ -66,14 +64,11 @@ const Navigation = ({ currentSection, sections }: NavigationProps) => {
 
               {/* Line between items (except after last) */}
               {index < navItems.length - 1 && (
-                <div className="w-px h-8 bg-[#7A8271] my-1" />
+                <div className="w-px h-24 bg-[#7A8271] my-1" />
               )}
             </div>
           );
         })}
-
-        {/* Bottom circle */}
-        <div className="w-2 h-2 rounded-full bg-[#7A8271] mt-2" />
       </div>
     </nav>
   );
