@@ -9,14 +9,14 @@ import { Badge } from "@/components/ui/badge";
 
 const Research = () => {
   const publications = [
-    {
-      title: "Inverse Black-box Diffusion Modeling",
-      journal: "Air Force Research Laboratory",
-      year: "2025",
-      abstract: "Abstract coming soon!",
-      status: "In Progress",
-      link: "#",
-    },
+    // {
+    //   title: "Inverse Black-box Diffusion Modeling",
+    //   journal: "Air Force Research Laboratory",
+    //   year: "2025",
+    //   abstract: "Abstract coming soon!",
+    //   status: "In Progress",
+    //   link: "#",
+    // },
     {
       title: "Investigation of Racial Bias in Predictive Policing",
       journal: "International Conference on Machine Learning Applications",
@@ -35,7 +35,7 @@ const Research = () => {
   ];
 
   return (
-    <div className="lg:max-w-6xl lg:mx-36 lg:py-32 sm:w-full sm:px-4">
+    <div className="lg:max-w-6xl lg:ml-48 lg:mr-24 lg:py-32 sm:w-full sm:px-4">
       <div className="text-center mb-12">
         <h1 className="text-4xl underline underline-offset-4 font-semibold text-foreground mb-4">
           Research
@@ -46,34 +46,39 @@ const Research = () => {
       <div>
         <div className="space-y-6">
           {publications.map((pub, index) => (
-            <Card
+            <a
               key={index}
-              className="hover:shadow-md transition-shadow duration-200"
+              href={pub.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block"
             >
-              <CardHeader>
-                <div className="flex justify-between items-start gap-4">
-                  <CardTitle className="text-lg leading-tight">
-                    {pub.title}
-                  </CardTitle>
-                  <Badge
-                    variant={
-                      pub.status === "Published" ? "default" : "secondary"
-                    }
-                    className="text-xs whitespace-nowrap"
-                  >
-                    {pub.status}
-                  </Badge>
-                </div>
-                <CardDescription>
-                  {pub.journal} • {pub.year}
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground text-sm leading-relaxed">
-                  {pub.abstract}
-                </p>
-              </CardContent>
-            </Card>
+              <Card className="hover:shadow-md transition-shadow duration-200 cursor-pointer">
+                <CardHeader>
+                  <div className="flex justify-between items-start gap-4">
+                    <CardTitle className="text-lg leading-tight">
+                      {pub.title}
+                    </CardTitle>
+                    <Badge
+                      variant={
+                        pub.status === "Published" ? "default" : "secondary"
+                      }
+                      className="text-xs whitespace-nowrap"
+                    >
+                      {pub.status}
+                    </Badge>
+                  </div>
+                  <CardDescription>
+                    {pub.journal} • {pub.year}
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground text-sm leading-relaxed">
+                    {pub.abstract}
+                  </p>
+                </CardContent>
+              </Card>
+            </a>
           ))}
         </div>
       </div>

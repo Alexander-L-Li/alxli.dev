@@ -38,15 +38,30 @@ const SinglePageLayout = () => {
 
       const scrollPosition = window.scrollY + 80; // Account for header
       const windowHeight = window.innerHeight;
-      const sectionIndex = Math.round(scrollPosition / windowHeight);
 
-      if (
-        sectionIndex !== currentSection &&
-        sectionIndex >= 0 &&
-        sectionIndex < sections.length
-      ) {
-        setCurrentSection(sectionIndex);
-        const newPath = sections[sectionIndex].path;
+      // Find which section is currently in view
+      let activeSectionIndex = 0;
+      for (let i = 0; i < sections.length; i++) {
+        const sectionElement = document.getElementById(sections[i].id);
+        if (sectionElement) {
+          const rect = sectionElement.getBoundingClientRect();
+          const sectionTop = rect.top + window.scrollY;
+          const sectionBottom = sectionTop + rect.height;
+
+          // Check if the scroll position is within this section
+          if (
+            scrollPosition >= sectionTop - 100 &&
+            scrollPosition < sectionBottom - 100
+          ) {
+            activeSectionIndex = i;
+            break;
+          }
+        }
+      }
+
+      if (activeSectionIndex !== currentSection) {
+        setCurrentSection(activeSectionIndex);
+        const newPath = sections[activeSectionIndex].path;
         if (location.pathname !== newPath) {
           navigate(newPath, { replace: true });
         }
@@ -55,7 +70,7 @@ const SinglePageLayout = () => {
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [currentSection, location.pathname, navigate, isScrolling]);
+  }, [currentSection, location.pathname, navigate, isScrolling, sections]);
 
   // Handle direct navigation to routes
   useEffect(() => {
