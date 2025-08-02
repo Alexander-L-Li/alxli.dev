@@ -88,31 +88,20 @@
 
 @layer base {
   body {
-    @apply font-mono;
+    @apply font-sans;
   }
 
   html {
     scroll-behavior: smooth;
-    @apply text-[rgb(45_80_22)];
   }
 
   /* Mobile-specific styles */
   @media (max-width: 767px) {
-    /* Hide navigation on mobile */
-    nav {
-      display: none;
-    }
-
     /* Improve touch targets */
     button,
     a[role="button"] {
       min-height: 44px;
       min-width: 44px;
-    }
-
-    /* Adjust section padding for mobile */
-    section {
-      padding: 1.5rem !important;
     }
   }
 }

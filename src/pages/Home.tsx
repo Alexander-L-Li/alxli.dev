@@ -2,50 +2,109 @@ import SocialLinks from "@/components/SocialLinks";
 
 const Home = () => {
   return (
-    <div className="lg:max-w-6xl lg:ml-36 lg:mr-24 lg:py-20 sm:w-full sm:px-4">
-      <div className="flex flex-col items-start text-left max-w-6xl sm:w-full sm:px-4 sm:space-y-6">
-        <img
-          src="/headshot.jpg"
-          alt="Profile"
-          className="mt-4 mb-2 w-80 h-80 object-cover border-4 border-transparent shadow-md"
-        />
-        <h1 className="mt-4 text-3xl sm:text-4xl font-semibold">
-          Alexander L. Li
-        </h1>
-        <p className="mt-2 sm:mt-0 sm:text-md lg:text-xl text-yellow-900 font-medium">
-          AI + Math @ MIT
-        </p>
-        <div className="mt-2 sm:mt-0 sm:text-sm lg:text-md text-black leading-relaxed space-y-4">
-          <p>
-            Hello! I'm an undergraduate student studying Artificial Intelligence
-            (6-4) & Mathematics (18) at MIT. Currently passionate about computer
-            vision, ML engineering, startups, and full-stack development!
+    <div className="pt-36 min-h-screen flex flex-col justify-center">
+      <div className="text-center space-y-8">
+        {/* Profile Image */}
+        <div className="flex justify-center">
+          <img
+            src="/headshot.jpg"
+            alt="Alexander L. Li"
+            className="w-48 h-48 sm:w-64 sm:h-64 rounded-full object-cover shadow-lg border-4 border-white"
+          />
+        </div>
+
+        {/* Name and Title */}
+        <div className="space-y-2">
+          <h1 className="text-4xl sm:text-5xl font-bold text-gray-900">
+            Alexander L. Li
+          </h1>
+          <p className="text-xl sm:text-2xl text-green-900 font-medium">
+            AI + Math @ MIT
           </p>
-          <p>
+        </div>
+
+        {/* Description */}
+        <div className="max-w-2xl mx-auto space-y-4 text-gray-600 leading-relaxed">
+          {/* <p className="text-lg">
+            I'm an undergraduate student studying Artificial Intelligence &
+            Mathematics at MIT.
+          </p> */}
+          <p className="text-lg pt-8">
             Feel free to reach out:{" "}
-            <a className="italic text-blue-800" href="mailto:alxli@mit.edu">
+            <a
+              className="text-blue-700 hover:text-blue-800 transition-colors"
+              href="mailto:alxli@mit.edu"
+            >
               alxli [at] mit [dot] edu
             </a>
           </p>
         </div>
-        <SocialLinks />
-        <div className="w-full flex flex-col items-center sm:mt-2 lg:mt-4 lg:py-4">
-          <svg
-            className="w-8 h-8 mt-4 ml-2 lg:ml-24 text-black opacity-40 animate-bounce"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M19 9l-7 7-7-7"
-            />
-          </svg>
-          <p className="mt-2 ml-2 lg:ml-24 text-sm text-black opacity-40">
-            Scroll for more info!
-          </p>
+
+        {/* Social Links */}
+        <div className="pt-4">
+          <SocialLinks />
+        </div>
+
+        {/* About Me Section */}
+        <div className="pt-48 pb-24">
+          <div className="text-center sm:text-left sm:ml-0 sm:mr-auto">
+            <h2 className="text-2xl sm:text-3xl font-semibold text-gray-900 mb-4">
+              About
+            </h2>
+            <div className="max-w-4xl sm:max-w-none">
+              <p className="text-lg text-gray-600 leading-relaxed">
+                Hello! I'm a 2nd-year undergraduate student studying{" "}
+                <span className="underline">
+                  Artificial Intelligence & Mathematics at MIT
+                </span>
+                .
+                <br />
+                I'm currently exploring and curious about the startup space,
+                computer vision, ML engineering, and full-stack development.
+                <br />
+                <br />
+                In my free time, I sing in{" "}
+                <a
+                  className="text-blue-700 hover:text-blue-800 transition-colors"
+                  href="https://www.themitlogs.com/"
+                >
+                  MIT Logarhythms A Cappella
+                </a>{" "}
+                and fence Sabre on MIT's Varsity Men's Fencing Team.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Resume Section */}
+        <div className="pb-48">
+          <div className="text-center sm:text-left sm:ml-0 sm:mr-auto">
+            <h2 className="text-2xl sm:text-3xl font-semibold text-gray-900 mb-4">
+              Resume
+            </h2>
+            <div className="max-w-4xl sm:max-w-none">
+              <p className="text-lg text-gray-600 leading-relaxed mb-8">
+                Download my resume to learn more about my experience and skills.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <a
+                  href="/resume.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block text-white text-center w-full sm:w-48 h-12 py-3 bg-green-900 rounded-lg transition duration-300 hover:bg-green-800 hover:shadow-lg font-medium"
+                >
+                  View PDF
+                </a>
+                <a
+                  href="/resume.pdf"
+                  download
+                  className="inline-block text-white text-center w-full sm:w-48 h-12 py-3 bg-green-900 rounded-lg transition duration-300 hover:bg-green-800 hover:shadow-lg font-medium"
+                >
+                  Download PDF
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

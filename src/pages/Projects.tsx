@@ -61,14 +61,18 @@ const Projects = () => {
   ];
 
   return (
-    <div className="lg:max-w-6xl lg:ml-48 lg:mr-24 sm:w-full sm:px-4">
+    <div className="py-12">
       <div className="text-center mb-12">
-        <h1 className="text-4xl underline underline-offset-4 font-semibold text-foreground mb-4">
+        <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">
           Projects
         </h1>
+        <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          A collection of my work in software development, AI, and creative
+          technology.
+        </p>
       </div>
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         {projects.map((project, index) =>
           project.title === "Chilldeck DJ" ? (
             <a
@@ -77,24 +81,30 @@ const Projects = () => {
               rel="noopener noreferrer"
               key={index}
             >
-              <Card className="group hover:shadow-lg transition-shadow duration-200 relative">
+              <Card className="group hover:shadow-xl transition-all duration-300 relative flex flex-col h-[500px] bg-white border-0 shadow-md">
                 <div className="aspect-video overflow-hidden rounded-t-lg">
                   <img
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-200"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                   />
                 </div>
-                <CardHeader>
-                  <CardTitle className="text-lg">{project.title}</CardTitle>
-                  <CardDescription className="text-sm text-black">
+                <CardHeader className="pb-3">
+                  <CardTitle className="text-xl font-semibold text-gray-900">
+                    {project.title}
+                  </CardTitle>
+                  <CardDescription className="text-sm text-gray-600 leading-relaxed">
                     {project.description}
                   </CardDescription>
                 </CardHeader>
-                <CardContent>
-                  <div className="flex flex-wrap text-yellow-900 gap-2">
+                <CardContent className="flex-1 flex flex-col justify-between">
+                  <div className="flex flex-wrap gap-2">
                     {project.technologies.map((tech) => (
-                      <Badge key={tech} variant="secondary" className="text-xs">
+                      <Badge
+                        key={tech}
+                        variant="secondary"
+                        className="text-xs bg-gray-100 text-gray-700 hover:bg-gray-200"
+                      >
                         {tech}
                       </Badge>
                     ))}
@@ -135,24 +145,30 @@ const Projects = () => {
               rel="noopener noreferrer"
               key={index}
             >
-              <Card className="group hover:shadow-lg transition-shadow duration-200 relative">
+              <Card className="group hover:shadow-xl transition-all duration-300 relative flex flex-col h-[500px] bg-white border-0 shadow-md">
                 <div className="aspect-video overflow-hidden rounded-t-lg">
                   <img
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-200"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                   />
                 </div>
-                <CardHeader>
-                  <CardTitle className="text-lg">{project.title}</CardTitle>
-                  <CardDescription className="text-sm text-black">
+                <CardHeader className="pb-3">
+                  <CardTitle className="text-xl font-semibold text-gray-900">
+                    {project.title}
+                  </CardTitle>
+                  <CardDescription className="text-sm text-gray-600 leading-relaxed">
                     {project.description}
                   </CardDescription>
                 </CardHeader>
-                <CardContent>
-                  <div className="flex flex-wrap text-yellow-900 gap-2">
+                <CardContent className="flex-1 flex flex-col justify-between">
+                  <div className="flex flex-wrap gap-2">
                     {project.technologies.map((tech) => (
-                      <Badge key={tech} variant="secondary" className="text-xs">
+                      <Badge
+                        key={tech}
+                        variant="secondary"
+                        className="text-xs bg-gray-100 text-gray-700 hover:bg-gray-200"
+                      >
                         {tech}
                       </Badge>
                     ))}
@@ -193,24 +209,30 @@ const Projects = () => {
               rel="noopener noreferrer"
               key={index}
             >
-              <Card className="group hover:shadow-lg transition-shadow duration-200 relative">
+              <Card className="group hover:shadow-xl transition-all duration-300 relative flex flex-col h-[500px] bg-white border-0 shadow-md">
                 <div className="aspect-video overflow-hidden rounded-t-lg">
                   <img
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-200"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                   />
                 </div>
-                <CardHeader>
-                  <CardTitle className="text-lg">{project.title}</CardTitle>
-                  <CardDescription className="text-sm text-black">
+                <CardHeader className="pb-3">
+                  <CardTitle className="text-xl font-semibold text-gray-900">
+                    {project.title}
+                  </CardTitle>
+                  <CardDescription className="text-sm text-gray-600 leading-relaxed">
                     {project.description}
                   </CardDescription>
                 </CardHeader>
-                <CardContent>
-                  <div className="flex flex-wrap text-yellow-900 gap-2">
+                <CardContent className="flex-1 flex flex-col justify-between">
+                  <div className="flex flex-wrap gap-2">
                     {project.technologies.map((tech) => (
-                      <Badge key={tech} variant="secondary" className="text-xs">
+                      <Badge
+                        key={tech}
+                        variant="secondary"
+                        className="text-xs bg-gray-100 text-gray-700 hover:bg-gray-200"
+                      >
                         {tech}
                       </Badge>
                     ))}
@@ -247,7 +269,7 @@ const Projects = () => {
           ) : (
             <Card
               key={index}
-              className="group hover:shadow-lg transition-shadow duration-200 relative"
+              className="group hover:shadow-lg transition-shadow duration-200 relative flex flex-col h-[500px]"
             >
               <div className="aspect-video overflow-hidden rounded-t-lg">
                 <img
@@ -262,7 +284,7 @@ const Projects = () => {
                   {project.description}
                 </CardDescription>
               </CardHeader>
-              <CardContent>
+              <CardContent className="flex-1 flex flex-col justify-between">
                 <div className="flex flex-wrap text-yellow-900 gap-2">
                   {project.technologies.map((tech) => (
                     <Badge key={tech} variant="secondary" className="text-xs">

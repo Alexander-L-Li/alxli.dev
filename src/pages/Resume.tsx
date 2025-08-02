@@ -1,23 +1,26 @@
 const Resume = () => {
   return (
-    <div className="mt-24 lg:max-w-6xl lg:ml-48 lg:mr-24 sm:w-full sm:px-4">
+    <div className="py-12">
       <div className="text-center mb-12">
-        <h1 className="text-4xl underline underline-offset-4 font-semibold text-foreground mb-8 pb-2">
+        <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">
           Resume
         </h1>
-        <div className="flex flex-row gap-4 justify-center">
+        <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-8">
+          Download my resume to learn more about my experience and skills.
+        </p>
+        <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <a
-            href="docs/resume.pdf"
+            href="/resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block text-white text-center w-48 h-12 py-3 bg-green-900 rounded-lg transition duration-150 hover:bg-green-800 hover:scale-105"
+            className="inline-block text-white text-center w-full sm:w-48 h-12 py-3 bg-green-700 rounded-lg transition duration-300 hover:bg-green-800 hover:shadow-lg font-medium"
           >
             View PDF
           </a>
           <a
-            href="docs/resume.pdf"
+            href="/resume.pdf"
             download
-            className="inline-block text-white text-center w-48 h-12 py-3 bg-green-900 rounded-lg transition duration-150 hover:bg-green-800 hover:scale-105"
+            className="inline-block text-white text-center w-full sm:w-48 h-12 py-3 bg-green-700 rounded-lg transition duration-300 hover:bg-green-800 hover:shadow-lg font-medium"
           >
             Download PDF
           </a>

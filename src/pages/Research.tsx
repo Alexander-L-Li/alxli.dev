@@ -9,14 +9,14 @@ import { Badge } from "@/components/ui/badge";
 
 const Research = () => {
   const publications = [
-    // {
-    //   title: "Inverse Black-box Diffusion Modeling",
-    //   journal: "Air Force Research Laboratory",
-    //   year: "2025",
-    //   abstract: "Abstract coming soon!",
-    //   status: "In Progress",
-    //   link: "#",
-    // },
+    {
+      title: "Inverse Black-box Diffusion Modeling",
+      journal: "Air Force Research Laboratory",
+      year: "2025",
+      abstract: "Distribution C Classified.",
+      status: "1st Author - Published",
+      link: "#",
+    },
     {
       title: "Investigation of Racial Bias in Predictive Policing",
       journal: "International Conference on Machine Learning Applications",
@@ -35,11 +35,14 @@ const Research = () => {
   ];
 
   return (
-    <div className="lg:max-w-6xl lg:ml-48 lg:mr-24 lg:py-32 sm:w-full sm:px-4">
+    <div className="py-12">
       <div className="text-center mb-12">
-        <h1 className="text-4xl underline underline-offset-4 font-semibold text-foreground mb-4">
+        <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">
           Research
         </h1>
+        <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          My academic work in deep learning, computer vision, and AI ethics.
+        </p>
       </div>
 
       {/* Publications */}
