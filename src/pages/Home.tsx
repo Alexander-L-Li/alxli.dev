@@ -30,7 +30,8 @@ const Home = () => {
             Mathematics at MIT.
           </p> */}
           <p className="text-lg pt-8">
-            Feel free to reach out:{" "}
+            Let's connect :)
+            <br />
             <a
               className="text-blue-700 hover:text-blue-800 transition-colors"
               href="mailto:alxli@mit.edu"
@@ -63,14 +64,15 @@ const Home = () => {
                 computer vision, ML engineering, and full-stack development.
                 <br />
                 <br />
-                In my free time, I sing in{" "}
+                Outside of academics, I sing/perform acappella as a member of
+                the{" "}
                 <a
                   className="text-blue-700 hover:text-blue-800 transition-colors"
                   href="https://www.themitlogs.com/"
                 >
-                  MIT Logarhythms A Cappella
+                  MIT Logarhythms
                 </a>{" "}
-                and fence Sabre on MIT's Varsity Men's Fencing Team.
+                and fence Sabre on the Varsity Men's Fencing Team.
               </p>
             </div>
           </div>
