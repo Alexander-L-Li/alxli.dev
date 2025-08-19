@@ -24,7 +24,7 @@ const Projects = () => {
         "Supabase",
         "Docker",
       ],
-      image: "",
+      image: "/dormspace.png",
       link: "https://github.com/Alexander-L-Li/College-Marketplace",
     },
     {
