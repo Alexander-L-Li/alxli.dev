@@ -11,27 +11,23 @@ const Research = () => {
   const publications = [
     {
       title: "Inverse Black-box Diffusion Modeling",
-      journal: "Air Force Research Laboratory",
-      year: "2025",
-      abstract: "Distribution C Classified.",
+      journal: "Society for Optics & Photonics: Defense & Security",
+      year: "2026",
+      abstract:
+        "Inferring initial parameters from an output is a major challenge for 'black-box' generative models, as a single output can map to multiple valid inputs. We introduce a novel framework using a conditional denoising diffusion model to predict a multimodal distribution of rendering parameters from a 2D image. By analyzing visual cues like shadows and perspective, our model learns the complex mapping between an image and its source parameters. This approach allows us to generate a diverse, yet accurate range of plausible parameter sets from a single image, effectively capturing the problem's inherent ambiguity. The method is demonstrated by inferring camera and lighting settings used to render a 3D vehicle.",
       status: "1st Author - Published",
       link: "#",
     },
     {
       title: "Investigation of Racial Bias in Predictive Policing",
-      journal: "International Conference on Machine Learning Applications",
+      journal:
+        "International Conference on Machine Learning Applications (ICMLA)",
       year: "2023",
       abstract:
         "Machine learning can be utilized to enhance proper police response to Property Crime. However, many current predictive policing strategies unfairly target underprivileged racial demographics by training models with biased data. This is due in part to the racial bias patterns prevalent in policing, which are ultimately replicated by machine learning models. In our study, we focus on the city of Boston and investigate their publicly available Census and Crime Incident datasets to identify the possibility to create less racially biased machine learning models for Property Crime prediction. By utilizing a Multi-Variable Regression model, we propose an alternative to more traditional crime mapping methods. The performance of the model shows a 74.2% correlation to accurately mapping the hotspots of crime. Furthermore, we utilize GIS software to map and visualize geographic property crime rates based on Census Tracts. After running multiple Machine Learning Regression Analyses on our data, we discovered that underprivileged racial demographic variables have an overall low correlation to the rate of Property Crime in the Boston area. Thus, this work is a small step for the possibility of creating machine learning models that both effectively map predicted property crime and are less racially biased against select demographics.",
       status: "1st Author - Published",
       link: "https://ieeexplore.ieee.org/document/10459796",
     },
-  ];
-
-  const researchAreas = [
-    "Inverse Black-box Models",
-    "Diffusion Models",
-    "Computational Methods",
   ];
 
   return (

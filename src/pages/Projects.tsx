@@ -12,7 +12,7 @@ const Projects = () => {
     {
       title: "Dorm Space",
       description:
-        "Dorm Space is a sleek, full-stack college marketplace app where students can effortlessly buy, sell, and trade campus gear. Fast, secure, and student-focused—built for dorm life hustle.",
+        "Dorm Space is a college marketplace app where students can effortlessly buy, sell, and trade campus gear. Agentic AI features include automatic listing description generation and real-time pricing recommendations.",
       technologies: [
         "React.js",
         "HTML",

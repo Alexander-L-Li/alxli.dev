@@ -61,18 +61,32 @@ const Home = () => {
                 .
                 <br />
                 I'm currently exploring and curious about the startup space,
-                computer vision, ML engineering, and full-stack development.
+                computer vision, deep learning, and full-stack development.
                 <br />
                 <br />
-                Outside of academics, I sing/perform acappella as a member of
-                the{" "}
+                Outside of academics, I'm a member of{" "}
+                <a
+                  className="text-blue-700 hover:text-blue-800 transition-colors"
+                  href="https://startup.mit.edu/"
+                >
+                  StartLabs
+                </a>{" "}
+                (MIT's premier entrepreneurship club), sing acappella as a
+                member of the{" "}
                 <a
                   className="text-blue-700 hover:text-blue-800 transition-colors"
                   href="https://www.themitlogs.com/"
                 >
                   MIT Logarhythms
                 </a>{" "}
-                and fence Sabre on the Varsity Men's Fencing Team.
+                (prev. Business Manager), and fence Saber on the{" "}
+                <a
+                  className="text-blue-700 hover:text-blue-800 transition-colors"
+                  href="https://mitathletics.com/sports/mens-fencing/roster/alexander-li/13720"
+                >
+                  Varsity Men's Fencing Team
+                </a>
+                {""}!
               </p>
             </div>
           </div>
