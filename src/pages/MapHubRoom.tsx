@@ -225,40 +225,88 @@ interface AddPinModalProps {
 const AddPinModal: React.FC<AddPinModalProps> = ({
   isOpen, onClose, onAdd, numDays, dayColors, selectedDay, allPins, pending, userName,
 }) => {
-  const [locationName, setLocationName] = useState('');
-  const [address, setAddress] = useState('');
+  const acRef = useRef<google.maps.places.Autocomplete | null>(null);
+
+  const [resolvedName, setResolvedName] = useState('');
+  const [resolvedAddress, setResolvedAddress] = useState('');
+  const [resolvedLat, setResolvedLat] = useState<number | null>(null);
+  const [resolvedLng, setResolvedLng] = useState<number | null>(null);
   const [notes, setNotes] = useState('');
   const [day, setDay] = useState(selectedDay);
   const [color, setColor] = useState(dayColors[selectedDay - 1] ?? DEFAULT_COLORS[0]);
   const [category, setCategory] = useState<Category | ''>('');
   const [loading, setLoading] = useState(false);
 
+  // Reset state when modal opens
   useEffect(() => {
-    if (isOpen) {
-      setLocationName(pending.locationName);
-      setAddress(pending.address);
-      setNotes('');
-      setDay(selectedDay);
-      setColor(dayColors[selectedDay - 1] ?? DEFAULT_COLORS[0]);
-      setCategory('');
+    if (!isOpen) return;
+    const hasLocation = pending.address !== '' || pending.locationName !== '';
+    if (hasLocation) {
+      setResolvedName(pending.locationName);
+      setResolvedAddress(pending.address);
+      setResolvedLat(pending.lat);
+      setResolvedLng(pending.lng);
+    } else {
+      setResolvedName('');
+      setResolvedAddress('');
+      setResolvedLat(null);
+      setResolvedLng(null);
     }
+    setNotes('');
+    setDay(selectedDay);
+    setColor(dayColors[selectedDay - 1] ?? DEFAULT_COLORS[0]);
+    setCategory('');
   }, [isOpen, pending, selectedDay, dayColors]);
+
+  // Callback ref — fires the instant the search input mounts/unmounts in the Dialog portal
+  const searchInputCallbackRef = useCallback((node: HTMLInputElement | null) => {
+    if (acRef.current) {
+      google.maps.event.clearInstanceListeners(acRef.current);
+      acRef.current = null;
+    }
+    if (!node || !window.google?.maps?.places) return;
+    const ac = new google.maps.places.Autocomplete(node, {
+      fields: ['name', 'formatted_address', 'geometry'],
+    });
+    acRef.current = ac;
+    ac.addListener('place_changed', () => {
+      const place = ac.getPlace();
+      const lat = place.geometry?.location?.lat();
+      const lng = place.geometry?.location?.lng();
+      if (lat != null && lng != null) {
+        setResolvedName(place.name ?? '');
+        setResolvedAddress(place.formatted_address ?? '');
+        setResolvedLat(lat);
+        setResolvedLng(lng);
+      }
+    });
+  }, []);
 
   const handleDayChange = (d: number) => {
     setDay(d);
     setColor(dayColors[d - 1] ?? DEFAULT_COLORS[(d - 1) % DEFAULT_COLORS.length]);
   };
 
+  const clearSelection = () => {
+    setResolvedName('');
+    setResolvedAddress('');
+    setResolvedLat(null);
+    setResolvedLng(null);
+  };
+
+  const isResolved = resolvedLat != null && resolvedLng != null;
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!locationName.trim()) return;
+    if (!isResolved) return;
     setLoading(true);
     const nextOrder = allPins.filter((p) => p.day === day).length + 1;
+    const displayName = resolvedName || resolvedAddress;
     await onAdd({
-      locationName: locationName.trim(),
-      address: address.trim(),
-      lat: pending.lat,
-      lng: pending.lng,
+      locationName: displayName.trim(),
+      address: resolvedAddress.trim(),
+      lat: resolvedLat!,
+      lng: resolvedLng!,
       day,
       order: nextOrder,
       color,
@@ -280,28 +328,40 @@ const AddPinModal: React.FC<AddPinModalProps> = ({
           </DialogTitle>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-4">
+          {/* Place search */}
           <div>
             <label className="text-xs text-zinc-500 block mb-1.5">
-              Location Name <span className="text-red-500">*</span>
+              Search <span className="text-red-500">*</span>
             </label>
-            <input
-              value={locationName}
-              onChange={(e) => setLocationName(e.target.value)}
-              placeholder="e.g. Shibuya Crossing"
-              required
-              autoFocus
-              className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-3 py-2 text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-zinc-500"
-            />
+            {isResolved ? (
+              <div className="flex items-start gap-2 bg-zinc-800 border border-zinc-700 rounded-lg px-3 py-2.5">
+                <MapPin className="w-4 h-4 text-zinc-400 flex-shrink-0 mt-0.5" />
+                <div className="flex-1 min-w-0">
+                  {resolvedName && (
+                    <p className="text-sm text-white font-medium truncate">{resolvedName}</p>
+                  )}
+                  <p className="text-xs text-zinc-400 truncate">{resolvedAddress || resolvedName}</p>
+                </div>
+                <button
+                  type="button"
+                  onClick={clearSelection}
+                  className="text-zinc-500 hover:text-white transition-colors flex-shrink-0"
+                  title="Change location"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              </div>
+            ) : (
+              <input
+                ref={searchInputCallbackRef}
+                type="text"
+                placeholder="Search for a place…"
+                autoFocus
+                className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-3 py-2 text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-zinc-500"
+              />
+            )}
           </div>
-          <div>
-            <label className="text-xs text-zinc-500 block mb-1.5">Address</label>
-            <input
-              value={address}
-              onChange={(e) => setAddress(e.target.value)}
-              placeholder="e.g. 2-2-1 Dogenzaka, Shibuya"
-              className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-3 py-2 text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-zinc-500"
-            />
-          </div>
+
           <div>
             <label className="text-xs text-zinc-500 block mb-1.5">Notes</label>
             <textarea
@@ -403,7 +463,7 @@ const AddPinModal: React.FC<AddPinModalProps> = ({
             </button>
             <button
               type="submit"
-              disabled={!locationName.trim() || loading}
+              disabled={!isResolved || loading}
               className="px-4 py-2 text-sm bg-white text-zinc-900 font-medium rounded-lg hover:bg-zinc-100 transition-colors disabled:opacity-40"
             >
               {loading ? 'Adding...' : 'Add Pin'}
@@ -427,8 +487,13 @@ interface EditPinModalProps {
 }
 
 const EditPinModal: React.FC<EditPinModalProps> = ({ isOpen, onClose, onSave, pin, numDays, dayColors }) => {
+  const acRef = useRef<google.maps.places.Autocomplete | null>(null);
+
   const [locationName, setLocationName] = useState(pin.locationName);
-  const [address, setAddress] = useState(pin.address);
+  const [resolvedAddress, setResolvedAddress] = useState(pin.address);
+  const [resolvedLat, setResolvedLat] = useState(pin.lat);
+  const [resolvedLng, setResolvedLng] = useState(pin.lng);
+  const [searching, setSearching] = useState(false);
   const [notes, setNotes] = useState(pin.notes);
   const [day, setDay] = useState(pin.day);
   const [color, setColor] = useState(pin.color);
@@ -438,7 +503,10 @@ const EditPinModal: React.FC<EditPinModalProps> = ({ isOpen, onClose, onSave, pi
   useEffect(() => {
     if (isOpen) {
       setLocationName(pin.locationName);
-      setAddress(pin.address);
+      setResolvedAddress(pin.address);
+      setResolvedLat(pin.lat);
+      setResolvedLng(pin.lng);
+      setSearching(false);
       setNotes(pin.notes);
       setDay(pin.day);
       setColor(pin.color);
@@ -446,13 +514,40 @@ const EditPinModal: React.FC<EditPinModalProps> = ({ isOpen, onClose, onSave, pi
     }
   }, [isOpen, pin]);
 
+  // Callback ref — fires the instant the search input mounts when searching is true
+  const searchInputCallbackRef = useCallback((node: HTMLInputElement | null) => {
+    if (acRef.current) {
+      google.maps.event.clearInstanceListeners(acRef.current);
+      acRef.current = null;
+    }
+    if (!node || !window.google?.maps?.places) return;
+    const ac = new google.maps.places.Autocomplete(node, {
+      fields: ['name', 'formatted_address', 'geometry'],
+    });
+    acRef.current = ac;
+    ac.addListener('place_changed', () => {
+      const place = ac.getPlace();
+      const lat = place.geometry?.location?.lat();
+      const lng = place.geometry?.location?.lng();
+      if (lat != null && lng != null) {
+        setLocationName(place.name ?? place.formatted_address ?? '');
+        setResolvedAddress(place.formatted_address ?? '');
+        setResolvedLat(lat);
+        setResolvedLng(lng);
+        setSearching(false);
+      }
+    });
+  }, []);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!locationName.trim()) return;
     setLoading(true);
     await onSave(pin.id, {
       locationName: locationName.trim(),
-      address: address.trim(),
+      address: resolvedAddress.trim(),
+      lat: resolvedLat,
+      lng: resolvedLng,
       notes: notes.trim(),
       day,
       color,
@@ -472,23 +567,56 @@ const EditPinModal: React.FC<EditPinModalProps> = ({ isOpen, onClose, onSave, pi
           </DialogTitle>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-4">
+          {/* Location */}
+          <div>
+            <div className="flex items-center justify-between mb-1.5">
+              <label className="text-xs text-zinc-500">Location</label>
+              {!searching && (
+                <button
+                  type="button"
+                  onClick={() => setSearching(true)}
+                  className="text-xs text-zinc-500 hover:text-white transition-colors"
+                >
+                  Change location
+                </button>
+              )}
+            </div>
+            {searching ? (
+              <div className="space-y-1.5">
+                <input
+                  ref={searchInputCallbackRef}
+                  type="text"
+                  placeholder="Search for a new place…"
+                  autoFocus
+                  className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-3 py-2 text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-zinc-500"
+                />
+                <button
+                  type="button"
+                  onClick={() => setSearching(false)}
+                  className="text-xs text-zinc-500 hover:text-white transition-colors"
+                >
+                  Cancel search
+                </button>
+              </div>
+            ) : (
+              <div className="flex items-start gap-2 bg-zinc-800 border border-zinc-700 rounded-lg px-3 py-2.5">
+                <MapPin className="w-4 h-4 text-zinc-400 flex-shrink-0 mt-0.5" />
+                <div className="flex-1 min-w-0">
+                  <p className="text-xs text-zinc-400 truncate">{resolvedAddress || locationName}</p>
+                </div>
+              </div>
+            )}
+          </div>
+          {/* Editable name */}
           <div>
             <label className="text-xs text-zinc-500 block mb-1.5">
-              Location Name <span className="text-red-500">*</span>
+              Display Name <span className="text-red-500">*</span>
             </label>
             <input
               value={locationName}
               onChange={(e) => setLocationName(e.target.value)}
               required
-              autoFocus
-              className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-3 py-2 text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-zinc-500"
-            />
-          </div>
-          <div>
-            <label className="text-xs text-zinc-500 block mb-1.5">Address</label>
-            <input
-              value={address}
-              onChange={(e) => setAddress(e.target.value)}
+              autoFocus={!searching}
               className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-3 py-2 text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-zinc-500"
             />
           </div>
