@@ -42,8 +42,7 @@ import {
   Trash2,
   Check,
   Copy,
-  ArrowUp,
-  ArrowDown,
+  GripVertical,
   Search,
   Plus,
   Eye,
@@ -320,7 +319,12 @@ const AddPinModal: React.FC<AddPinModalProps> = ({
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="bg-zinc-900 border-zinc-800 text-white max-w-md">
+      <DialogContent
+          className="bg-zinc-900 border-zinc-800 text-white max-w-md"
+          onInteractOutside={(e) => {
+            if ((e.target as HTMLElement)?.closest?.('.pac-container')) e.preventDefault();
+          }}
+        >
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2 text-white">
             <MapPin className="w-4 h-4 text-zinc-400" />
@@ -559,7 +563,12 @@ const EditPinModal: React.FC<EditPinModalProps> = ({ isOpen, onClose, onSave, pi
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="bg-zinc-900 border-zinc-800 text-white max-w-md">
+      <DialogContent
+          className="bg-zinc-900 border-zinc-800 text-white max-w-md"
+          onInteractOutside={(e) => {
+            if ((e.target as HTMLElement)?.closest?.('.pac-container')) e.preventDefault();
+          }}
+        >
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2 text-white">
             <Edit3 className="w-4 h-4 text-zinc-400" />
@@ -954,7 +963,12 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="bg-zinc-900 border-zinc-800 text-white max-w-md">
+      <DialogContent
+          className="bg-zinc-900 border-zinc-800 text-white max-w-md"
+          onInteractOutside={(e) => {
+            if ((e.target as HTMLElement)?.closest?.('.pac-container')) e.preventDefault();
+          }}
+        >
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2 text-white">
             <Settings className="w-4 h-4 text-zinc-400" />
@@ -1142,6 +1156,8 @@ const MapHubRoom: React.FC = () => {
   const [routeOrigin, setRouteOrigin] = useState<StayLocation | null>(null);
   const [directionsResult, setDirectionsResult] = useState<google.maps.DirectionsResult | null>(null);
   const [directionsRequest, setDirectionsRequest] = useState<{ pins: Pin[]; origin: StayLocation | null } | null>(null);
+  const [draggedId, setDraggedId] = useState<string | null>(null);
+  const [dragOverId, setDragOverId] = useState<string | null>(null);
   const [routeComputing, setRouteComputing] = useState(false);
   const [editingPin, setEditingPin] = useState<Pin | null>(null);
   const searchBoxRef = useRef<google.maps.places.SearchBox | null>(null);
@@ -1435,20 +1451,19 @@ const MapHubRoom: React.FC = () => {
     await updateDoc(doc(db, 'rooms', roomCode), updates);
   };
 
-  const handleReorder = async (pinId: string, direction: 'up' | 'down') => {
-    if (!roomCode) return;
-    const pin = pins.find((p) => p.id === pinId);
-    if (!pin) return;
-    const dayPins = pins.filter((p) => p.day === pin.day).sort((a, b) => a.order - b.order);
-    const idx = dayPins.findIndex((p) => p.id === pinId);
-    const swapIdx = direction === 'up' ? idx - 1 : idx + 1;
-    if (swapIdx < 0 || swapIdx >= dayPins.length) return;
-    const swapPin = dayPins[swapIdx];
-    await Promise.all([
-      updateDoc(doc(db, 'rooms', roomCode, 'pins', pin.id), { order: swapPin.order }),
-      updateDoc(doc(db, 'rooms', roomCode, 'pins', swapPin.id), { order: pin.order }),
-    ]);
-  };
+  const handleDropReorder = useCallback(async (fromId: string, toId: string) => {
+    if (fromId === toId || !roomCode) return;
+    const list = pins.filter((p) => p.day === selectedDay).sort((a, b) => a.order - b.order);
+    const fromIdx = list.findIndex((p) => p.id === fromId);
+    const toIdx = list.findIndex((p) => p.id === toId);
+    if (fromIdx === -1 || toIdx === -1) return;
+    const reordered = [...list];
+    const [moved] = reordered.splice(fromIdx, 1);
+    reordered.splice(toIdx, 0, moved);
+    const b = writeBatch(db);
+    reordered.forEach((p, i) => b.update(doc(db, 'rooms', roomCode, 'pins', p.id), { order: i + 1 }));
+    await b.commit();
+  }, [pins, selectedDay, roomCode]);
 
   const handleUpdateDefault = async (p: Permission) => {
     if (!roomCode) return;
@@ -1728,6 +1743,16 @@ const MapHubRoom: React.FC = () => {
                   return (
                     <li
                       key={pin.id}
+                      draggable={effectivePermission === 'edit' && !isPreview}
+                      onDragStart={() => setDraggedId(pin.id)}
+                      onDragOver={(e) => { e.preventDefault(); if (draggedId !== pin.id) setDragOverId(pin.id); }}
+                      onDragLeave={() => setDragOverId(null)}
+                      onDrop={() => {
+                        if (draggedId) handleDropReorder(draggedId, pin.id);
+                        setDraggedId(null);
+                        setDragOverId(null);
+                      }}
+                      onDragEnd={() => { setDraggedId(null); setDragOverId(null); }}
                       onClick={() => {
                         if (!isPreview) {
                           setSelectedPin(selectedPin?.id === pin.id ? null : pin);
@@ -1735,13 +1760,18 @@ const MapHubRoom: React.FC = () => {
                         }
                       }}
                       className={cn(
-                        'flex items-start gap-2.5 px-3 py-2.5 transition-colors border-b border-zinc-800/40',
+                        'flex items-center gap-2.5 px-3 py-2.5 transition-colors border-b border-zinc-800/40',
                         !isPreview && (selectedPin?.id === pin.id ? 'bg-zinc-800 cursor-pointer' : 'hover:bg-zinc-800/50 cursor-pointer'),
                         isPreview && 'cursor-default opacity-80',
+                        draggedId === pin.id && 'opacity-30',
+                        dragOverId === pin.id && draggedId !== pin.id && 'border-t-2 border-t-blue-500',
                       )}
                     >
+                      {effectivePermission === 'edit' && !isPreview && (
+                        <GripVertical className="w-3.5 h-3.5 text-zinc-700 flex-shrink-0 cursor-grab active:cursor-grabbing" />
+                      )}
                       <div
-                        className="w-5 h-5 rounded-full flex items-center justify-center text-white text-[10px] font-bold flex-shrink-0 mt-0.5"
+                        className="w-5 h-5 rounded-full flex items-center justify-center text-white text-[10px] font-bold flex-shrink-0"
                         style={{ backgroundColor: pin.color }}
                       >
                         {displayOrder}
@@ -1758,13 +1788,7 @@ const MapHubRoom: React.FC = () => {
                         {pin.addedBy && <p className="text-zinc-700 text-[10px] mt-0.5">by {pin.addedBy}</p>}
                       </div>
                       {effectivePermission === 'edit' && !isPreview && (
-                        <div className="flex flex-col gap-0.5 flex-shrink-0 pt-0.5">
-                          <button onClick={(e) => { e.stopPropagation(); handleReorder(pin.id, 'up'); }} disabled={idx === 0} className="text-zinc-700 hover:text-zinc-300 disabled:opacity-20 p-0.5">
-                            <ArrowUp className="w-3 h-3" />
-                          </button>
-                          <button onClick={(e) => { e.stopPropagation(); handleReorder(pin.id, 'down'); }} disabled={idx === pinsForDay.length - 1} className="text-zinc-700 hover:text-zinc-300 disabled:opacity-20 p-0.5">
-                            <ArrowDown className="w-3 h-3" />
-                          </button>
+                        <div className="flex flex-col gap-0.5 flex-shrink-0">
                           <button onClick={(e) => { e.stopPropagation(); setEditingPin(pin); }} className="text-zinc-700 hover:text-zinc-300 p-0.5">
                             <Edit3 className="w-3 h-3" />
                           </button>
