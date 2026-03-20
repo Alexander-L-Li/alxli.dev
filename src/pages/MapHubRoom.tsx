@@ -1086,6 +1086,22 @@ const MapHubRoom: React.FC = () => {
     );
   }, [roomCode, user]);
 
+  // Record this room in the user's "My Trips" list
+  useEffect(() => {
+    if (!roomCode || !user || !room) return;
+    setDoc(
+      doc(db, 'users', user.uid, 'rooms', roomCode),
+      {
+        roomCode,
+        name: room.name,
+        numDays: room.numDays,
+        isOwner: user.uid === room.ownerId,
+        lastVisited: serverTimestamp(),
+      },
+      { merge: true }
+    );
+  }, [roomCode, user?.uid, room?.name, room?.numDays, room?.ownerId]);
+
   const handleMapLoad = useCallback((map: google.maps.Map) => setMapRef(map), []);
 
   // Fit map to all pins on initial load (fires once when both map and pins are ready)
