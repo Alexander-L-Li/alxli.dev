@@ -2,9 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Ensure Google Maps Places Autocomplete dropdown appears above dialogs */
+/* Ensure Google Maps Places Autocomplete dropdown appears above and is clickable inside Radix dialogs.
+   Radix sets pointer-events: none on <body> when a dialog is open, which blocks the pac-container
+   since it is appended directly to <body> (outside the dialog portal). */
 .pac-container {
   z-index: 9999 !important;
+  pointer-events: auto !important;
 }
 
 @layer base {
