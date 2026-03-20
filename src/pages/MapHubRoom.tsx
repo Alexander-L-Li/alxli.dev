@@ -1556,7 +1556,14 @@ const MapHubRoom: React.FC = () => {
           {Array.from({ length: room.numDays }, (_, i) => i + 1).map((d) => (
             <button
               key={d}
-              onClick={() => { setSelectedDay(d); setOptimizedPreview(null); setRouteOrigin(null); setDirectionsRequest(null); }}
+              onClick={() => {
+                setSelectedDay(d);
+                setOptimizedPreview(null);
+                setRouteOrigin(null);
+                setDirectionsRequest(null);
+                const stay = room.stayLocations?.[String(d)];
+                if (stay && mapRef) { mapRef.panTo({ lat: stay.lat, lng: stay.lng }); mapRef.setZoom(13); }
+              }}
               className={cn(
                 'flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-medium whitespace-nowrap transition-all flex-shrink-0',
                 selectedDay === d ? 'text-white' : 'text-zinc-600 hover:text-zinc-300'
