@@ -6,9 +6,26 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Link } from "react-router-dom";
 
 const Projects = () => {
   const projects = [
+    {
+      title: "MapHub",
+      description:
+        "Real-time collaborative trip planning on an interactive map. Create a room, invite friends with a code, and plan your itinerary together — pin locations by day, reorder stops, and sync live via Firestore.",
+      technologies: [
+        "React",
+        "TypeScript",
+        "Firebase Firestore",
+        "Google Maps API",
+        "Tailwind CSS",
+        "Vite",
+      ],
+      image: "/maphub-preview.svg",
+      link: "/maphub",
+      internal: true,
+    },
     {
       title: "Dorm Space",
       description:
@@ -74,7 +91,45 @@ const Projects = () => {
 
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         {projects.map((project, index) =>
-          project.title === "Chilldeck DJ" ? (
+          project.title === "MapHub" ? (
+            <Link to="/maphub" key={index}>
+              <Card className="group hover:shadow-xl transition-all duration-300 relative flex flex-col h-[500px] bg-white border-0 shadow-md">
+                <div className="aspect-video overflow-hidden rounded-t-lg">
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
+                <CardHeader className="pb-3">
+                  <CardTitle className="text-xl font-semibold text-gray-900">
+                    {project.title}
+                  </CardTitle>
+                  <CardDescription className="text-sm text-gray-600 leading-relaxed">
+                    {project.description}
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="flex-1 flex flex-col justify-between">
+                  <div className="flex flex-wrap gap-2">
+                    {project.technologies.map((tech) => (
+                      <Badge
+                        key={tech}
+                        variant="secondary"
+                        className="text-xs bg-gray-100 text-gray-700 hover:bg-gray-200"
+                      >
+                        {tech}
+                      </Badge>
+                    ))}
+                  </div>
+                  <div className="absolute bottom-2 right-2">
+                    <span className="text-xs bg-indigo-100 text-indigo-700 px-2 py-1 rounded-full font-medium">
+                      Live Demo →
+                    </span>
+                  </div>
+                </CardContent>
+              </Card>
+            </Link>
+          ) : project.title === "Chilldeck DJ" ? (
             <a
               href="https://chilldeck.onrender.com"
               target="_blank"

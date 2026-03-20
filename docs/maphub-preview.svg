@@ -1,0 +1,218 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="800" height="450">
+  <!-- App background (zinc-950) -->
+  <rect width="800" height="450" fill="#09090b"/>
+
+  <!-- ─── TOP BAR ────────────────────────────────────────────────────────── -->
+  <rect width="800" height="48" fill="#09090b"/>
+  <line x1="0" y1="48" x2="800" y2="48" stroke="#27272a" stroke-width="1" opacity="0.8"/>
+
+  <!-- Back button -->
+  <text x="14" y="30" fill="#71717a" font-family="ui-sans-serif,Arial,sans-serif" font-size="11">← MapHub</text>
+  <line x1="72" y1="15" x2="72" y2="33" stroke="#27272a" stroke-width="1"/>
+
+  <!-- Trip name -->
+  <text x="80" y="30" fill="white" font-family="ui-sans-serif,Arial,sans-serif" font-size="13" font-weight="600">Japan 2025</text>
+
+  <!-- Day tabs -->
+  <rect x="150" y="12" width="58" height="24" rx="5" fill="#ef444422"/>
+  <circle cx="162" cy="24" r="3" fill="#ef4444"/>
+  <text x="168" y="29" fill="#ef4444" font-family="ui-sans-serif,Arial,sans-serif" font-size="10" font-weight="600">Day 1</text>
+  <text x="197" y="29" fill="#ef4444" font-family="ui-sans-serif,Arial,sans-serif" font-size="9" opacity="0.45">4</text>
+
+  <circle cx="218" cy="24" r="3" fill="#f97316"/>
+  <text x="224" y="29" fill="#52525b" font-family="ui-sans-serif,Arial,sans-serif" font-size="10">Day 2</text>
+  <text x="253" y="29" fill="#52525b" font-family="ui-sans-serif,Arial,sans-serif" font-size="9" opacity="0.4">3</text>
+
+  <circle cx="272" cy="24" r="3" fill="#eab308"/>
+  <text x="278" y="29" fill="#52525b" font-family="ui-sans-serif,Arial,sans-serif" font-size="10">Day 3</text>
+  <text x="307" y="29" fill="#52525b" font-family="ui-sans-serif,Arial,sans-serif" font-size="9" opacity="0.4">2</text>
+
+  <!-- Edit badge -->
+  <rect x="666" y="14" width="44" height="20" rx="4" fill="#18181b" stroke="#27272a" stroke-width="1"/>
+  <text x="688" y="28" text-anchor="middle" fill="#71717a" font-family="ui-sans-serif,Arial,sans-serif" font-size="9">edit</text>
+
+  <!-- Right icon group: sun, share, settings -->
+  <!-- Sun -->
+  <circle cx="724" cy="24" r="4.5" fill="none" stroke="#71717a" stroke-width="1.5"/>
+  <g stroke="#71717a" stroke-width="1.5">
+    <line x1="724" y1="15.5" x2="724" y2="13.5"/>
+    <line x1="724" y1="32.5" x2="724" y2="34.5"/>
+    <line x1="732.5" y1="24" x2="734.5" y2="24"/>
+    <line x1="715.5" y1="24" x2="713.5" y2="24"/>
+    <line x1="730.2" y1="17.8" x2="731.6" y2="16.4"/>
+    <line x1="717.8" y1="30.2" x2="716.4" y2="31.6"/>
+    <line x1="730.2" y1="30.2" x2="731.6" y2="31.6"/>
+    <line x1="717.8" y1="17.8" x2="716.4" y2="16.4"/>
+  </g>
+  <!-- Share dots -->
+  <circle cx="750" cy="17" r="2.5" fill="none" stroke="#71717a" stroke-width="1.5"/>
+  <circle cx="758" cy="24" r="2.5" fill="none" stroke="#71717a" stroke-width="1.5"/>
+  <circle cx="750" cy="31" r="2.5" fill="none" stroke="#71717a" stroke-width="1.5"/>
+  <line x1="752.3" y1="18.2" x2="755.7" y2="22.8" stroke="#71717a" stroke-width="1.5"/>
+  <line x1="752.3" y1="29.8" x2="755.7" y2="25.2" stroke="#71717a" stroke-width="1.5"/>
+  <!-- Settings gear -->
+  <circle cx="782" cy="24" r="4" fill="none" stroke="#71717a" stroke-width="1.5"/>
+  <circle cx="782" cy="24" r="1.5" fill="#71717a"/>
+
+  <!-- ─── SIDEBAR ────────────────────────────────────────────────────────── -->
+  <rect x="0" y="48" width="300" height="402" fill="#18181b"/>
+  <line x1="300" y1="48" x2="300" y2="450" stroke="#27272a" stroke-width="1" opacity="0.6"/>
+
+  <!-- Search bar -->
+  <rect x="0" y="48" width="300" height="48" fill="#18181b"/>
+  <line x1="0" y1="96" x2="300" y2="96" stroke="#27272a" stroke-width="1" opacity="0.6"/>
+  <rect x="10" y="58" width="280" height="28" rx="7" fill="#27272a" stroke="#3f3f46" stroke-width="0.5"/>
+  <!-- Search icon -->
+  <circle cx="27" cy="72" r="4.5" fill="none" stroke="#52525b" stroke-width="1.5"/>
+  <line x1="30.2" y1="75.2" x2="33" y2="78" stroke="#52525b" stroke-width="1.5"/>
+  <rect x="40" y="69" width="88" height="6" rx="2" fill="#52525b" opacity="0.4"/>
+
+  <!-- Day header -->
+  <rect x="0" y="96" width="300" height="48" fill="#18181b"/>
+  <line x1="0" y1="144" x2="300" y2="144" stroke="#27272a" stroke-width="1" opacity="0.6"/>
+  <circle cx="18" cy="109" r="3.5" fill="#ef4444"/>
+  <text x="26" y="114" fill="#d4d4d8" font-family="ui-sans-serif,Arial,sans-serif" font-size="11" font-weight="600">Day 1</text>
+  <text x="72" y="114" fill="#52525b" font-family="ui-sans-serif,Arial,sans-serif" font-size="11">· 4 stops</text>
+  <!-- Stay row (amber hotel) -->
+  <text x="14" y="133" fill="#fbbf24" font-family="ui-sans-serif,Arial,sans-serif" font-size="10">⌂</text>
+  <rect x="26" y="126" width="120" height="6" rx="2" fill="#f59e0b" opacity="0.55"/>
+
+  <!-- Pin list items -->
+  <!-- Pin 1 selected -->
+  <rect x="0" y="144" width="300" height="46" fill="#27272a"/>
+  <circle cx="22" cy="167" r="10" fill="#ef4444"/>
+  <text x="22" y="171.5" text-anchor="middle" fill="white" font-family="ui-sans-serif,Arial,sans-serif" font-size="9" font-weight="bold">1</text>
+  <rect x="38" y="154" width="115" height="7" rx="2.5" fill="white" opacity="0.9"/>
+  <rect x="38" y="165" width="82" height="5" rx="2" fill="#71717a" opacity="0.55"/>
+  <rect x="38" y="174" width="58" height="4" rx="2" fill="#3f3f46" opacity="0.6"/>
+  <line x1="0" y1="190" x2="300" y2="190" stroke="#27272a" stroke-width="0.5" opacity="0.4"/>
+
+  <!-- Pin 2 -->
+  <rect x="0" y="190" width="300" height="44" fill="#18181b"/>
+  <circle cx="22" cy="212" r="10" fill="#f97316"/>
+  <text x="22" y="216.5" text-anchor="middle" fill="white" font-family="ui-sans-serif,Arial,sans-serif" font-size="9" font-weight="bold">2</text>
+  <rect x="38" y="200" width="98" height="7" rx="2.5" fill="white" opacity="0.7"/>
+  <rect x="38" y="211" width="70" height="5" rx="2" fill="#71717a" opacity="0.42"/>
+  <line x1="0" y1="234" x2="300" y2="234" stroke="#27272a" stroke-width="0.5" opacity="0.4"/>
+
+  <!-- Pin 3 -->
+  <rect x="0" y="234" width="300" height="44" fill="#18181b"/>
+  <circle cx="22" cy="256" r="10" fill="#eab308"/>
+  <text x="22" y="260.5" text-anchor="middle" fill="white" font-family="ui-sans-serif,Arial,sans-serif" font-size="9" font-weight="bold">3</text>
+  <rect x="38" y="244" width="108" height="7" rx="2.5" fill="white" opacity="0.55"/>
+  <rect x="38" y="255" width="75" height="5" rx="2" fill="#71717a" opacity="0.35"/>
+  <line x1="0" y1="278" x2="300" y2="278" stroke="#27272a" stroke-width="0.5" opacity="0.4"/>
+
+  <!-- Pin 4 -->
+  <rect x="0" y="278" width="300" height="44" fill="#18181b"/>
+  <circle cx="22" cy="300" r="10" fill="#22c55e"/>
+  <text x="22" y="304.5" text-anchor="middle" fill="white" font-family="ui-sans-serif,Arial,sans-serif" font-size="9" font-weight="bold">4</text>
+  <rect x="38" y="288" width="90" height="7" rx="2.5" fill="white" opacity="0.45"/>
+  <rect x="38" y="299" width="65" height="5" rx="2" fill="#71717a" opacity="0.28"/>
+
+  <!-- Bottom action buttons -->
+  <rect x="0" y="402" width="300" height="48" fill="#18181b"/>
+  <line x1="0" y1="402" x2="300" y2="402" stroke="#27272a" stroke-width="1" opacity="0.6"/>
+  <!-- Optimize Route -->
+  <rect x="10" y="410" width="133" height="28" rx="6" fill="#27272a" stroke="#3f3f46" stroke-width="0.5"/>
+  <text x="76.5" y="429" text-anchor="middle" fill="#d4d4d8" font-family="ui-sans-serif,Arial,sans-serif" font-size="10" font-weight="500">Optimize Route</text>
+  <!-- Add Pin -->
+  <rect x="151" y="410" width="139" height="28" rx="6" fill="#27272a" stroke="#3f3f46" stroke-width="0.5"/>
+  <text x="220.5" y="429" text-anchor="middle" fill="white" font-family="ui-sans-serif,Arial,sans-serif" font-size="10" font-weight="500">+ Add Pin</text>
+
+  <!-- Sidebar toggle nub -->
+  <rect x="299" y="214" width="12" height="26" rx="0 4 4 0" fill="#18181b" stroke="#27272a" stroke-width="1"/>
+  <text x="305" y="230" text-anchor="middle" fill="#52525b" font-family="Arial,sans-serif" font-size="9">‹</text>
+
+  <!-- ─── MAP AREA (dark Google Maps style) ─────────────────────────────── -->
+  <rect x="300" y="48" width="500" height="402" fill="#212121"/>
+
+  <!-- Building/block areas -->
+  <rect x="308" y="60" width="48" height="32" rx="1" fill="#1c1c1c"/>
+  <rect x="366" y="55" width="58" height="42" rx="1" fill="#1c1c1c"/>
+  <rect x="435" y="62" width="42" height="35" rx="1" fill="#1c1c1c"/>
+  <rect x="490" y="57" width="55" height="28" rx="1" fill="#1a1a1a"/>
+  <rect x="558" y="55" width="64" height="52" rx="1" fill="#1c1c1c"/>
+  <rect x="638" y="60" width="48" height="38" rx="1" fill="#1a1a1a"/>
+  <rect x="700" y="65" width="55" height="32" rx="1" fill="#1a1a1a"/>
+  <rect x="308" y="155" width="42" height="30" rx="1" fill="#1c1c1c"/>
+  <rect x="362" y="162" width="52" height="26" rx="1" fill="#1a1a1a"/>
+  <rect x="540" y="148" width="58" height="42" rx="1" fill="#1c1c1c"/>
+  <rect x="618" y="155" width="48" height="36" rx="1" fill="#1a1a1a"/>
+  <rect x="690" y="150" width="52" height="32" rx="1" fill="#1a1a1a"/>
+  <rect x="308" y="248" width="46" height="36" rx="1" fill="#1c1c1c"/>
+  <rect x="364" y="255" width="54" height="30" rx="1" fill="#1a1a1a"/>
+  <rect x="472" y="246" width="46" height="36" rx="1" fill="#1a1a1a"/>
+  <rect x="558" y="238" width="52" height="42" rx="1" fill="#1c1c1c"/>
+  <rect x="658" y="250" width="56" height="32" rx="1" fill="#1a1a1a"/>
+  <rect x="728" y="242" width="46" height="42" rx="1" fill="#1a1a1a"/>
+
+  <!-- Major roads (horizontal) -->
+  <rect x="300" y="140" width="500" height="7" fill="#373737"/>
+  <rect x="300" y="228" width="500" height="6" fill="#373737"/>
+  <rect x="300" y="310" width="500" height="6" fill="#373737"/>
+
+  <!-- Major roads (vertical) -->
+  <rect x="416" y="48" width="7" height="402" fill="#373737"/>
+  <rect x="554" y="48" width="6" height="402" fill="#373737"/>
+  <rect x="676" y="48" width="5" height="402" fill="#373737"/>
+
+  <!-- Minor roads -->
+  <rect x="300" y="108" width="500" height="2.5" fill="#2d2d2d"/>
+  <rect x="300" y="186" width="500" height="2.5" fill="#2d2d2d"/>
+  <rect x="300" y="268" width="500" height="2.5" fill="#2d2d2d"/>
+  <rect x="486" y="48" width="2.5" height="402" fill="#2d2d2d"/>
+  <rect x="626" y="48" width="2.5" height="402" fill="#2d2d2d"/>
+  <rect x="748" y="48" width="2.5" height="402" fill="#2d2d2d"/>
+
+  <!-- Highway -->
+  <path d="M300,356 C400,346 520,360 620,352 S740,358 800,350" stroke="#3c3c3c" stroke-width="8" fill="none"/>
+
+  <!-- Water (bottom) -->
+  <path d="M480,400 Q560,388 660,402 Q730,410 800,400 L800,450 L480,450 Z" fill="#080808"/>
+
+  <!-- ─── ROUTE LINE (Google Maps blue, road-following) ─────────────────── -->
+  <!-- Route shadow -->
+  <path d="M356,248 C360,230 366,205 382,165 L490,162 Q530,165 560,228 L560,228 C582,264 614,234 700,188 C722,176 744,176 760,232 Q768,265 758,298 C744,334 706,347 676,348 L560,342 C502,340 462,326 424,295 C400,277 375,261 356,248 Z"
+        stroke="#1a56db" stroke-width="9" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"/>
+  <!-- Main route -->
+  <path d="M356,248 C360,230 366,205 382,165 L490,162 Q530,165 560,228 L560,228 C582,264 614,234 700,188 C722,176 744,176 760,232 Q768,265 758,298 C744,334 706,347 676,348 L560,342 C502,340 462,326 424,295 C400,277 375,261 356,248 Z"
+        stroke="#4285F4" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Dim pins from other days -->
+  <circle cx="452" cy="310" r="7" fill="#3b82f6" opacity="0.25"/>
+  <circle cx="600" cy="268" r="7" fill="#3b82f6" opacity="0.2"/>
+  <circle cx="500" cy="96" r="7" fill="#f97316" opacity="0.2"/>
+
+  <!-- ─── HOTEL MARKER (round-trip origin/destination, amber) ──────────── -->
+  <circle cx="356" cy="248" r="13" fill="#f59e0b" stroke="white" stroke-width="2.5"/>
+  <text x="356" y="253.5" text-anchor="middle" fill="white" font-family="ui-sans-serif,Arial,sans-serif" font-size="12" font-weight="bold">⌂</text>
+
+  <!-- ─── PIN MARKERS ────────────────────────────────────────────────────── -->
+  <!-- Pin 1 (selected — larger white ring) -->
+  <circle cx="382" cy="165" r="14" fill="#ef4444" stroke="white" stroke-width="2.5"/>
+  <text x="382" y="170" text-anchor="middle" fill="white" font-family="ui-sans-serif,Arial,sans-serif" font-size="10" font-weight="bold">1</text>
+
+  <!-- Pin 2 -->
+  <circle cx="560" cy="228" r="11" fill="#f97316" stroke="#111111" stroke-width="1.5"/>
+  <text x="560" y="232.5" text-anchor="middle" fill="white" font-family="ui-sans-serif,Arial,sans-serif" font-size="10" font-weight="bold">2</text>
+
+  <!-- Pin 3 -->
+  <circle cx="700" cy="188" r="11" fill="#eab308" stroke="#111111" stroke-width="1.5"/>
+  <text x="700" y="192.5" text-anchor="middle" fill="white" font-family="ui-sans-serif,Arial,sans-serif" font-size="10" font-weight="bold">3</text>
+
+  <!-- Pin 4 -->
+  <circle cx="760" cy="298" r="11" fill="#22c55e" stroke="#111111" stroke-width="1.5"/>
+  <text x="760" y="302.5" text-anchor="middle" fill="white" font-family="ui-sans-serif,Arial,sans-serif" font-size="10" font-weight="bold">4</text>
+
+  <!-- Info window popup on pin 1 -->
+  <rect x="390" y="118" width="148" height="60" rx="6" fill="white" filter="drop-shadow(0 2px 8px rgba(0,0,0,0.4))"/>
+  <polygon points="394,178 400,192 406,178" fill="white"/>
+  <rect x="399" y="125" width="6" height="6" rx="3" fill="#ef4444"/>
+  <text x="410" y="132" fill="#111827" font-family="ui-sans-serif,Arial,sans-serif" font-size="10" font-weight="600">Senso-ji Temple</text>
+  <text x="399" y="144" fill="#6b7280" font-family="ui-sans-serif,Arial,sans-serif" font-size="8.5">Landmark · Asakusa, Tokyo</text>
+  <text x="399" y="156" fill="#9ca3af" font-family="ui-sans-serif,Arial,sans-serif" font-size="8">Day 1 · Stop 1</text>
+  <!-- Edit/Delete micro-buttons -->
+  <text x="399" y="170" fill="#6b7280" font-family="ui-sans-serif,Arial,sans-serif" font-size="8">✎ Edit</text>
+  <text x="427" y="170" fill="#ef4444" font-family="ui-sans-serif,Arial,sans-serif" font-size="8">🗑 Delete</text>
+</svg>

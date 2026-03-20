@@ -5,6 +5,8 @@ import Home from "./pages/Home";
 import Projects from "./pages/Projects";
 import Research from "./pages/Research";
 import NotFound from "./pages/NotFound";
+import MapHub from "./pages/MapHub";
+import MapHubRoom from "./pages/MapHubRoom";
 
 const queryClient = new QueryClient();
 
@@ -36,6 +38,9 @@ const App = () => (
             </Layout>
           }
         />
+
+        <Route path="/maphub" element={<MapHub />} />
+        <Route path="/maphub/:roomCode" element={<MapHubRoom />} />
 
         <Route
           path="*"
