@@ -1,13 +1,15 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { lazy, Suspense } from "react";
 import Layout from "./components/Layout";
 import Home from "./pages/Home";
 import Projects from "./pages/Projects";
 import Research from "./pages/Research";
 import NotFound from "./pages/NotFound";
-import MapHub from "./pages/MapHub";
-import MapHubRoom from "./pages/MapHubRoom";
 import ChessPage from "./pages/Chess";
+
+const MapHub = lazy(() => import("./pages/MapHub"));
+const MapHubRoom = lazy(() => import("./pages/MapHubRoom"));
 
 const queryClient = new QueryClient();
 
@@ -40,8 +42,8 @@ const App = () => (
           }
         />
 
-        <Route path="/maphub" element={<MapHub />} />
-        <Route path="/maphub/:roomCode" element={<MapHubRoom />} />
+        <Route path="/maphub" element={<Suspense fallback={null}><MapHub /></Suspense>} />
+        <Route path="/maphub/:roomCode" element={<Suspense fallback={null}><MapHubRoom /></Suspense>} />
         <Route path="/chess" element={<ChessPage />} />
 
         <Route
