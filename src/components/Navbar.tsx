@@ -14,7 +14,6 @@ const Navbar = () => {
   ];
 
   const handleNavigation = (path: string) => {
-    console.log("Navigating to:", path); // Debug log
     navigate(path);
     setIsOpen(false);
   };
