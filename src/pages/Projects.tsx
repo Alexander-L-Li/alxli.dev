@@ -64,6 +64,26 @@ const Projects = () => {
       badge: "Live Demo →",
     },
     {
+      title: "RL Chess Engine",
+      description:
+        "AlphaZero-style chess engine trained from scratch via reinforcement learning self-play. Features a 10-layer ResNet with Squeeze-Excitation attention and a policy/value dual head. Play against it live in your browser.",
+      technologies: [
+        "PyTorch",
+        "Python",
+        "ONNX",
+        "ResNet",
+        "MCTS",
+        "Reinforcement Learning",
+        "React",
+        "TypeScript",
+      ],
+      preview: <div className="text-7xl select-none">♟️</div>,
+      link: "/chess",
+      isInternal: true,
+      github: "https://github.com/Alexander-L-Li/chess_engine",
+      badge: "Play Now →",
+    },
+    {
       title: "Dorm Space",
       description:
         "Dorm Space is a college marketplace app where students can effortlessly buy, sell, and trade campus gear. Agentic AI features include automatic listing description generation and real-time pricing recommendations.",
@@ -98,26 +118,6 @@ const Projects = () => {
       image: "/chilldeck.png",
       link: "https://chilldeck.onrender.com",
       github: "https://github.com/Alexander-L-Li/ChillDeck-DJ",
-    },
-    {
-      title: "RL Chess Engine",
-      description:
-        "AlphaZero-style chess engine trained from scratch via reinforcement learning self-play. Features a 10-layer ResNet with Squeeze-Excitation attention and a policy/value dual head. Play against it live in your browser.",
-      technologies: [
-        "PyTorch",
-        "Python",
-        "ONNX",
-        "ResNet",
-        "MCTS",
-        "Reinforcement Learning",
-        "React",
-        "TypeScript",
-      ],
-      preview: <div className="text-7xl select-none">♟️</div>,
-      link: "/chess",
-      isInternal: true,
-      github: "https://github.com/Alexander-L-Li/chess_engine",
-      badge: "Play Now →",
     },
     {
       title: "ManusMIDI Digital Instrument",
