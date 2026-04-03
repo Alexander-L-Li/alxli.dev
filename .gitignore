@@ -12,6 +12,21 @@ dist
 dist-ssr
 *.local
 
+# Build output — contains inlined API keys; deploy via Firebase CLI only
+docs/assets/
+
+# Large binary / generated files (not needed in git; present locally for Firebase deploy)
+public/*.wasm
+public/chess_model.onnx
+docs/*.wasm
+docs/*.onnx
+
+# Test/debug screenshots in root (Playwright captures etc.)
+/*.png
+
+# Playwright MCP
+.playwright-mcp/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

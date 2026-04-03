@@ -7,6 +7,7 @@ import Research from "./pages/Research";
 import NotFound from "./pages/NotFound";
 import MapHub from "./pages/MapHub";
 import MapHubRoom from "./pages/MapHubRoom";
+import ChessPage from "./pages/Chess";
 
 const queryClient = new QueryClient();
 
@@ -41,6 +42,7 @@ const App = () => (
 
         <Route path="/maphub" element={<MapHub />} />
         <Route path="/maphub/:roomCode" element={<MapHubRoom />} />
+        <Route path="/chess" element={<ChessPage />} />
 
         <Route
           path="*"
