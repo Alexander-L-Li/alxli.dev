@@ -254,6 +254,23 @@ export default function ChessPage() {
   const histRef    = useRef(posHist);
   const colorRef   = useRef(playerColor);
   const histListRef = useRef<HTMLDivElement>(null);
+  const [boardSize, setBoardSize] = useState(480);
+
+  // Compute board size from viewport
+  useEffect(() => {
+    const update = () => {
+      if (window.innerWidth >= 1024) {
+        const maxH = window.innerHeight - 160;   // subtract top bar + labels
+        const maxW = window.innerWidth - 380;    // subtract side panel + gaps + padding
+        setBoardSize(Math.max(400, Math.min(720, maxH, maxW)));
+      } else {
+        setBoardSize(Math.min(window.innerWidth - 32, 520));
+      }
+    };
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
 
   // Keep refs in sync
   useEffect(() => { gameRef.current  = game;        }, [game]);
@@ -548,39 +565,54 @@ export default function ChessPage() {
 
   // ── Render ────────────────────────────────────────────────────
   return (
-    <div className="min-h-screen bg-[#161622] text-white">
-      {/* Page header */}
-      <div className="pt-20 pb-6 text-center px-4">
-        <h1 className="text-4xl sm:text-5xl font-bold mb-2 tracking-tight">
-          Chess Engine
-        </h1>
-        <p className="text-gray-400 text-base sm:text-lg max-w-xl mx-auto">
-          Play against my AlphaZero-style reinforcement-learning model
-        </p>
-      </div>
+    <div className="min-h-screen bg-[#161622] text-white flex flex-col">
 
-      {/* Main layout */}
-      <div className="max-w-5xl mx-auto px-4 pb-16 flex flex-col lg:flex-row gap-6 items-start justify-center">
+      {/* ── Top bar ── */}
+      <header className="shrink-0 flex items-center gap-4 px-5 py-3 border-b border-[#2a2a3d]">
+        <a
+          href="/projects"
+          className="text-gray-400 hover:text-white transition-colors text-sm flex items-center gap-1"
+        >
+          ← Projects
+        </a>
+        <div className="flex-1 text-center">
+          <h1 className="text-lg font-bold tracking-tight leading-none">Chess Engine</h1>
+          <p className="text-xs text-gray-500 mt-0.5 hidden sm:block">
+            AlphaZero-style RL model
+          </p>
+        </div>
+        <a
+          href="https://github.com/Alexander-L-Li/chess_engine"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-gray-400 hover:text-white transition-colors"
+          title="View source"
+        >
+          <GitHubIcon />
+        </a>
+      </header>
+
+      {/* ── Main area ── */}
+      <main className="flex-1 flex flex-col lg:flex-row gap-5 p-4 lg:p-6 items-center lg:items-start justify-center">
 
         {/* ── Board column ── */}
-        <div className="w-full lg:w-auto flex flex-col">
+        <div className="flex flex-col items-center gap-2 shrink-0">
 
           {/* Opponent label */}
-          <div className="flex items-center gap-2 mb-2 px-1">
-            <div className="w-9 h-9 rounded-full bg-[#2a2a3d] flex items-center justify-center text-lg">
+          <div className="flex items-center gap-2" style={{ width: boardSize }}>
+            <div className="w-8 h-8 rounded-full bg-[#2a2a3d] flex items-center justify-center text-base shrink-0">
               🤖
             </div>
-            <div>
-              <p className="text-sm font-semibold leading-tight">RL Chess Engine</p>
+            <div className="flex-1 min-w-0">
+              <p className="text-sm font-semibold leading-tight truncate">RL Chess Engine</p>
               <p className="text-xs text-gray-500">AlphaZero-style AI</p>
             </div>
-            {/* Thinking dots */}
             {game.turn() !== playerColor && !isOver && status === "playing" && (
-              <div className="ml-2 flex gap-1 items-center">
+              <div className="flex gap-1 items-center">
                 {[0, 150, 300].map((d) => (
                   <span
                     key={d}
-                    className="inline-block w-1.5 h-1.5 bg-blue-400 rounded-full animate-bounce"
+                    className="w-1.5 h-1.5 bg-blue-400 rounded-full animate-bounce"
                     style={{ animationDelay: `${d}ms` }}
                   />
                 ))}
@@ -589,8 +621,9 @@ export default function ChessPage() {
           </div>
 
           {/* Board */}
-          <div className="w-full max-w-[540px] select-none">
+          <div className="select-none">
             <Chessboard
+              boardWidth={boardSize}
               position={game.fen()}
               onPieceDrop={onDrop}
               onSquareClick={onSqClick}
@@ -598,7 +631,7 @@ export default function ChessPage() {
               customSquareStyles={sqStyles}
               customBoardStyle={{
                 borderRadius: "6px",
-                boxShadow: "0 10px 40px rgba(0,0,0,0.6)",
+                boxShadow: "0 12px 48px rgba(0,0,0,0.7)",
               }}
               customLightSquareStyle={{ backgroundColor: "#f0d9b5" }}
               customDarkSquareStyle={{ backgroundColor: "#b58863" }}
@@ -610,8 +643,8 @@ export default function ChessPage() {
           </div>
 
           {/* Player label */}
-          <div className="flex items-center gap-2 mt-2 px-1">
-            <div className="w-9 h-9 rounded-full bg-[#2a2a3d] flex items-center justify-center text-lg">
+          <div className="flex items-center gap-2" style={{ width: boardSize }}>
+            <div className="w-8 h-8 rounded-full bg-[#2a2a3d] flex items-center justify-center text-base shrink-0">
               👤
             </div>
             <div>
@@ -624,9 +657,9 @@ export default function ChessPage() {
         </div>
 
         {/* ── Side panel ── */}
-        <div className="w-full lg:w-72 flex flex-col gap-4">
+        <div className="w-full lg:w-72 xl:w-80 shrink-0 flex flex-col gap-3">
 
-          {/* Status card */}
+          {/* Status */}
           <div className="bg-[#1e1e2e] rounded-xl p-4 border border-[#2a2a3d]">
             <p className={`text-sm font-medium ${msgColor}`}>{msg}</p>
             {status === "loading" && (
@@ -649,11 +682,9 @@ export default function ChessPage() {
             <div className="px-4 py-2.5 border-b border-[#2a2a3d] text-xs font-semibold text-gray-400 uppercase tracking-wider">
               Moves
             </div>
-            <div ref={histListRef} className="h-56 overflow-y-auto px-2 py-1">
+            <div ref={histListRef} className="h-52 lg:h-64 overflow-y-auto px-2 py-1">
               {pairs.length === 0 ? (
-                <p className="text-gray-600 text-xs text-center py-6">
-                  Game not started
-                </p>
+                <p className="text-gray-600 text-xs text-center py-6">Game not started</p>
               ) : (
                 pairs.map(({ n, w, b }) => (
                   <div
@@ -690,21 +721,12 @@ export default function ChessPage() {
             <p className="text-gray-300 font-semibold text-sm">About the Model</p>
             <p>
               10-layer ResNet with Squeeze-Excitation attention (AlphaZero
-              architecture). Trained via reinforcement learning self-play.
+              architecture). Trained via RL self-play.
               12.8M parameters — policy + value dual head.
             </p>
-            <a
-              href="https://github.com/Alexander-L-Li/chess_engine"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-1.5 text-gray-400 hover:text-white transition-colors pt-1"
-            >
-              <GitHubIcon />
-              View source code
-            </a>
           </div>
         </div>
-      </div>
+      </main>
     </div>
   );
 }
