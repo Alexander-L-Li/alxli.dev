@@ -58,35 +58,35 @@ const Home = () => {
                 <span className="underline">
                   Artificial Intelligence & Mathematics at MIT
                 </span>
-                .
+                {"; "}
+                currently passionate about startups, deep learning, music, and
+                backend/full-stack SWE.
                 <br />
-                I'm currently exploring and curious about the startup space,
-                computer vision, deep learning, and full-stack development.
                 <br />
-                <br />
-                Outside of academics, I'm a member of{" "}
+                I'm also a member of{" "}
                 <a
                   className="text-blue-700 hover:text-blue-800 transition-colors"
                   href="https://startup.mit.edu/"
                 >
                   StartLabs
-                </a>{" "}
-                (MIT's premier entrepreneurship club), sing acappella as a
-                member of the{" "}
+                </a>
+                {", "}
+                sing acappella with the{" "}
                 <a
                   className="text-blue-700 hover:text-blue-800 transition-colors"
                   href="https://www.themitlogs.com/"
                 >
                   MIT Logarhythms
-                </a>{" "}
-                (prev. Business Manager), and fence Saber on the{" "}
+                </a>
+                {", "}
+                and fence for the{" "}
                 <a
                   className="text-blue-700 hover:text-blue-800 transition-colors"
                   href="https://mitathletics.com/sports/mens-fencing/roster/alexander-li/13720"
                 >
-                  Varsity Men's Fencing Team
+                  Men's Fencing Team (Saber)
                 </a>
-                {""}!
+                {""}.
               </p>
             </div>
           </div>
