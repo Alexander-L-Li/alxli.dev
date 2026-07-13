@@ -54,13 +54,13 @@ const Home = () => {
             </h2>
             <div className="max-w-4xl sm:max-w-none">
               <p className="text-lg text-gray-600 leading-relaxed">
-                Hello! I'm a 2nd-year undergraduate student studying{" "}
+                Hello! I'm a rising 3rd-year undergraduate student studying{" "}
                 <span className="underline">
                   Artificial Intelligence & Mathematics at MIT
                 </span>
                 {"; "}
-                currently passionate about startups, deep learning, music, and
-                backend/full-stack SWE.
+                currently passionate about deep learning, RL, computer vision,
+                and startups!
                 <br />
                 <br />
                 I'm also a member of{" "}
