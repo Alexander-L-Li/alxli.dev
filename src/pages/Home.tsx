@@ -2,127 +2,110 @@ import SocialLinks from "@/components/SocialLinks";
 
 const Home = () => {
   return (
-    <div className="pt-36 min-h-screen flex flex-col justify-center">
-      <div className="text-center space-y-8">
-        {/* Profile Image */}
-        <div className="flex justify-center">
+    <div className="pb-24">
+      {/* Page title */}
+      <h1
+        className="text-5xl sm:text-6xl md:text-7xl font-bold text-forest-dark tracking-tight leading-[1.05] text-center
+ md:text-left mb-16 md:mb-20"
+      >
+        Alexander L. Li<span className="text-forest">.</span>
+      </h1>
+
+      {/* Hero: headshot + intro */}
+      <section className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-start">
+        {/* Left column: headshot */}
+        <div className="flex justify-center md:justify-start">
           <img
             src="/headshot.jpg"
             alt="Alexander L. Li"
-            className="w-48 h-48 sm:w-64 sm:h-64 rounded-full object-cover shadow-lg border-4 border-white"
+            className="w-72 h-72 sm:w-80 sm:h-80 rounded-full object-cover border border-neutral-200"
           />
         </div>
 
-        {/* Name and Title */}
-        <div className="space-y-2">
-          <h1 className="text-4xl sm:text-5xl font-bold text-gray-900">
-            Alexander L. Li
-          </h1>
-          <p className="text-xl sm:text-2xl text-green-900 font-medium">
-            AI + Math @ MIT
-          </p>
-        </div>
+        {/* Right column: socials (centered) + intro (left-aligned) */}
+        <div className="md:pt-6">
+          {/* Socials — centered */}
+          <div className="flex justify-center mb-7">
+            <SocialLinks />
+          </div>
 
-        {/* Description */}
-        <div className="max-w-2xl mx-auto space-y-4 text-gray-600 leading-relaxed">
-          {/* <p className="text-lg">
-            I'm an undergraduate student studying Artificial Intelligence &
-            Mathematics at MIT.
-          </p> */}
-          <p className="text-lg pt-8">
-            Let's connect :)
-            <br />
-            <a
-              className="text-blue-700 hover:text-blue-800 transition-colors"
-              href="mailto:alxli@mit.edu"
-            >
-              alxli [at] mit [dot] edu
-            </a>
-          </p>
-        </div>
+          {/* Intro — left-aligned */}
+          <div className="space-y-5 text-[16px] leading-[1.65] text-neutral-800 text-left">
+            <p>
+              Hello! I&rsquo;m a rising 3rd-year undergraduate studying{" "}
+              <span className="text-neutral-900">
+                Artificial Intelligence &amp; Mathematics
+              </span>{" "}
+              at MIT, currently passionate about deep learning, RL, computer
+              vision, and startups.
+            </p>
 
-        {/* Social Links */}
-        <div className="pt-4">
-          <SocialLinks />
-        </div>
+            <p>
+              I&rsquo;m a member of{" "}
+              <a
+                className="link"
+                href="https://startup.mit.edu/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                StartLabs
+              </a>
+              , sing acappella with the{" "}
+              <a
+                className="link"
+                href="https://www.themitlogs.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                MIT Logarhythms
+              </a>
+              , and fence saber for the{" "}
+              <a
+                className="link"
+                href="https://mitathletics.com/sports/mens-fencing/roster/alexander-li/13720"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                MIT Men&rsquo;s Fencing Team
+              </a>
+              .
+            </p>
 
-        {/* About Me Section */}
-        <div className="pt-48 pb-24">
-          <div className="text-center sm:text-left sm:ml-0 sm:mr-auto">
-            <h2 className="text-2xl sm:text-3xl font-semibold text-gray-900 mb-4">
-              About
-            </h2>
-            <div className="max-w-4xl sm:max-w-none">
-              <p className="text-lg text-gray-600 leading-relaxed">
-                Hello! I'm a rising 3rd-year undergraduate student studying{" "}
-                <span className="underline">
-                  Artificial Intelligence & Mathematics at MIT
-                </span>
-                {"; "}
-                currently passionate about deep learning, RL, computer vision,
-                and startups!
-                <br />
-                <br />
-                I'm also a member of{" "}
-                <a
-                  className="text-blue-700 hover:text-blue-800 transition-colors"
-                  href="https://startup.mit.edu/"
-                >
-                  StartLabs
-                </a>
-                {", "}
-                sing acappella with the{" "}
-                <a
-                  className="text-blue-700 hover:text-blue-800 transition-colors"
-                  href="https://www.themitlogs.com/"
-                >
-                  MIT Logarhythms
-                </a>
-                {", "}
-                and fence for the{" "}
-                <a
-                  className="text-blue-700 hover:text-blue-800 transition-colors"
-                  href="https://mitathletics.com/sports/mens-fencing/roster/alexander-li/13720"
-                >
-                  Men's Fencing Team (Saber)
-                </a>
-                {""}.
-              </p>
-            </div>
+            <p>
+              Reach out at{" "}
+              <a className="link" href="mailto:alxli@mit.edu">
+                alxli [at] mit [dot] edu
+              </a>{" "}
+              &mdash; I&rsquo;d love to chat.
+            </p>
           </div>
         </div>
+      </section>
 
-        {/* Resume Section */}
-        <div className="pb-48">
-          <div className="text-center sm:text-left sm:ml-0 sm:mr-auto">
-            <h2 className="text-2xl sm:text-3xl font-semibold text-gray-900 mb-4">
-              Resume
-            </h2>
-            <div className="max-w-4xl sm:max-w-none">
-              <p className="text-lg text-gray-600 leading-relaxed mb-8">
-                Download my resume to learn more about my experience and skills.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <a
-                  href="/resume.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block text-white text-center w-full sm:w-48 h-12 py-3 bg-green-900 rounded-lg transition duration-300 hover:bg-green-800 hover:shadow-lg font-medium"
-                >
-                  View PDF
-                </a>
-                <a
-                  href="/resume.pdf"
-                  download
-                  className="inline-block text-white text-center w-full sm:w-48 h-12 py-3 bg-green-900 rounded-lg transition duration-300 hover:bg-green-800 hover:shadow-lg font-medium"
-                >
-                  Download PDF
-                </a>
-              </div>
-            </div>
-          </div>
+      {/* Resume */}
+      <section className="mt-12 md:mt-16">
+        <h2 className="text-2xl font-medium text-neutral-900 mb-4">Resume</h2>
+        <p className="text-[15px] leading-[1.7] text-neutral-700 mb-6">
+          A short version of my experience &amp; skills.
+        </p>
+        <div className="flex flex-wrap gap-3 text-[15px]">
+          <a
+            href="/resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center h-10 px-5 border border-forest text-forest hover:bg-forest hover:text-white transition-colors duration-200 rounded"
+          >
+            View PDF
+          </a>
+          <a
+            href="/resume.pdf"
+            download
+            className="inline-flex items-center h-10 px-5 border border-neutral-300 text-neutral-700 hover:border-forest hover:text-forest transition-colors duration-200 rounded"
+          >
+            Download
+          </a>
         </div>
-      </div>
+      </section>
     </div>
   );
 };

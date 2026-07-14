@@ -63,9 +63,9 @@ export default {
           ring: "hsl(var(--sidebar-ring))",
         },
         forest: {
-          DEFAULT: "#2D5016",
-          light: "#3A6B1C",
-          dark: "#1F3610",
+          DEFAULT: "#14532d",
+          light: "#166534",
+          dark: "#0f3f22",
         },
       },
       borderRadius: {
@@ -74,6 +74,14 @@ export default {
         sm: "calc(var(--radius) - 4px)",
       },
       fontFamily: {
+        sans: [
+          "Raleway",
+          "ui-sans-serif",
+          "system-ui",
+          "-apple-system",
+          "Segoe UI",
+          "sans-serif",
+        ],
         mono: ["Roboto Mono", "monospace"],
       },
       keyframes: {

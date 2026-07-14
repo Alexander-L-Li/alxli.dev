@@ -1,85 +1,61 @@
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-
 const Research = () => {
   const publications = [
     {
-      title: "Inverse Black-box Diffusion Modeling",
-      journal: "Society for Optics & Photonics: Defense & Security",
+      title:
+        "Inverse black-box diffusion modeling: multimodal parameter estimation from synthetically-rendered imagery",
+      journal: "SPIE Defense + Security",
       year: "2026",
-      abstract:
-        "Inferring initial parameters from an output is a major challenge for 'black-box' generative models, as a single output can map to multiple valid inputs. We introduce a novel framework using a conditional denoising diffusion model to predict a multimodal distribution of rendering parameters from a 2D image. By analyzing visual cues like shadows and perspective, our model learns the complex mapping between an image and its source parameters. This approach allows us to generate a diverse, yet accurate range of plausible parameter sets from a single image, effectively capturing the problem's inherent ambiguity. The method is demonstrated by inferring camera and lighting settings used to render a 3D vehicle.",
-      status: "1st Author - Published",
-      link: "#",
+      abstract: "",
+      status: "1st Author — Published",
+      link: "https://www.spiedigitallibrary.org/conference-proceedings-of-spie/14029/140290L/Inverse-black-box-diffusion-modeling--multimodal-parameter-estimation-from/10.1117/12.3091221.full",
     },
     {
-      title: "Investigation of Racial Bias in Predictive Policing",
+      title: "Investigation of racial bias in predictive policing algorithms",
       journal:
         "International Conference on Machine Learning Applications (ICMLA)",
       year: "2023",
-      abstract:
-        "Machine learning can be utilized to enhance proper police response to Property Crime. However, many current predictive policing strategies unfairly target underprivileged racial demographics by training models with biased data. This is due in part to the racial bias patterns prevalent in policing, which are ultimately replicated by machine learning models. In our study, we focus on the city of Boston and investigate their publicly available Census and Crime Incident datasets to identify the possibility to create less racially biased machine learning models for Property Crime prediction. By utilizing a Multi-Variable Regression model, we propose an alternative to more traditional crime mapping methods. The performance of the model shows a 74.2% correlation to accurately mapping the hotspots of crime. Furthermore, we utilize GIS software to map and visualize geographic property crime rates based on Census Tracts. After running multiple Machine Learning Regression Analyses on our data, we discovered that underprivileged racial demographic variables have an overall low correlation to the rate of Property Crime in the Boston area. Thus, this work is a small step for the possibility of creating machine learning models that both effectively map predicted property crime and are less racially biased against select demographics.",
-      status: "1st Author - Published",
+      abstract: "",
+      status: "1st Author — Published",
       link: "https://ieeexplore.ieee.org/document/10459796",
     },
   ];
 
   return (
-    <div className="py-12">
-      <div className="text-center mb-12">
-        <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">
+    <div className="pb-20">
+      <header className="mb-12">
+        <h1 className="text-4xl sm:text-5xl font-bold text-forest-dark tracking-tight">
           Research
         </h1>
-        <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+        <p className="mt-3 text-[15px] leading-[1.7] text-neutral-600 max-w-xl">
           My academic work in deep learning, computer vision, and AI ethics.
         </p>
-      </div>
+      </header>
 
-      {/* Publications */}
-      <div>
-        <div className="space-y-6">
-          {publications.map((pub, index) => (
-            <a
-              key={index}
-              href={pub.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block"
-            >
-              <Card className="hover:shadow-md transition-shadow duration-200 cursor-pointer">
-                <CardHeader>
-                  <div className="flex justify-between items-start gap-4">
-                    <CardTitle className="text-lg leading-tight">
-                      {pub.title}
-                    </CardTitle>
-                    <Badge
-                      variant={
-                        pub.status === "Published" ? "default" : "secondary"
-                      }
-                      className="text-xs whitespace-nowrap"
-                    >
-                      {pub.status}
-                    </Badge>
-                  </div>
-                  <CardDescription>
-                    {pub.journal} • {pub.year}
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground text-sm leading-relaxed">
-                    {pub.abstract}
-                  </p>
-                </CardContent>
-              </Card>
-            </a>
-          ))}
-        </div>
+      <div className="space-y-10">
+        {publications.map((pub, index) => (
+          <a
+            key={index}
+            href={pub.link}
+            target={pub.link === "#" ? undefined : "_blank"}
+            rel={pub.link === "#" ? undefined : "noopener noreferrer"}
+            className="group block border-t border-neutral-200 pt-8"
+          >
+            <div className="flex items-baseline justify-between gap-4 flex-wrap">
+              <h2 className="text-lg font-medium text-neutral-900 group-hover:text-forest-dark transition-colors duration-200">
+                {pub.title}
+              </h2>
+              <span className="text-[12.5px] text-forest whitespace-nowrap">
+                {pub.status}
+              </span>
+            </div>
+            <p className="mt-1 text-[13.5px] text-neutral-500">
+              {pub.journal} · {pub.year}
+            </p>
+            <p className="mt-3 text-[14.5px] leading-[1.7] text-neutral-600">
+              {pub.abstract}
+            </p>
+          </a>
+        ))}
       </div>
     </div>
   );

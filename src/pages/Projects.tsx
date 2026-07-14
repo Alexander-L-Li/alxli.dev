@@ -1,34 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-
-const GitHubIcon = () => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 24 24"
-    fill="currentColor"
-    className="w-7 h-7 text-gray-700 opacity-70 hover:opacity-100"
-  >
-    <path
-      fillRule="evenodd"
-      d="M12 0C5.373 0 0 5.373 0 12c0 5.303 3.438 9.8 8.205 11.387.6.113.82-.26.82-.577
-      0-.285-.01-1.04-.016-2.04-3.338.726-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756
-      -1.089-.745.083-.729.083-.729 1.205.085 1.84 1.237 1.84 1.237 1.07 1.834 2.809 1.304 3.495.997
-      .108-.775.418-1.305.762-1.606-2.665-.304-5.466-1.332-5.466-5.931 0-1.31.469-2.381 1.236-3.221
-      -.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23a11.5 11.5 0 0 1 3.003-.404c1.019.005
-      2.047.138 3.003.404 2.291-1.553 3.297-1.23 3.297-1.23.654 1.653.243 2.874.12 3.176.77.84 1.235
-      1.911 1.235 3.221 0 4.609-2.803 5.625-5.475 5.921.43.372.823 1.102.823 2.222 0 1.606-.015 2.898
-      -.015 3.293 0 .32.216.694.825.576C20.565 21.796 24 15.299 24 12c0-6.627-5.373-12-12-12z"
-      clipRule="evenodd"
-    />
-  </svg>
-);
+import { Github } from "lucide-react";
 
 interface Project {
   title: string;
@@ -61,7 +32,7 @@ const Projects = () => {
       image: "/maphub-preview.svg",
       link: "/maphub",
       isInternal: true,
-      badge: "Live Demo →",
+      badge: "Live Demo",
     },
     {
       title: "RL Chess Engine",
@@ -77,16 +48,16 @@ const Projects = () => {
         "React",
         "TypeScript",
       ],
-      preview: <div className="text-7xl select-none">♟️</div>,
+      preview: <div className="text-6xl select-none">♟️</div>,
       link: "/chess",
       isInternal: true,
       github: "https://github.com/Alexander-L-Li/chess_engine",
-      badge: "Play Now →",
+      badge: "Play Now",
     },
     {
       title: "Dorm Space",
       description:
-        "Dorm Space is a college marketplace app where students can effortlessly buy, sell, and trade campus gear. Agentic AI features include automatic listing description generation and real-time pricing recommendations.",
+        "College marketplace app where students effortlessly buy, sell, and trade campus gear. Agentic AI features include automatic listing description generation and real-time pricing recommendations.",
       technologies: [
         "React.js",
         "HTML",
@@ -105,7 +76,7 @@ const Projects = () => {
     {
       title: "Chilldeck DJ",
       description:
-        "Won 2nd Place (out of 60 projects) in MIT's Web Lab Hackathon & received Best Futuristic UI Design. Deployed full-stack web app providing accessible, easy-to-use interface for multiple track audio mixing.",
+        "Won 2nd Place (of 60 projects) at MIT Web Lab Hackathon & received Best Futuristic UI Design. Full-stack web app providing accessible, easy-to-use interface for multiple-track audio mixing.",
       technologies: [
         "Javascript",
         "HTML/CSS",
@@ -122,7 +93,7 @@ const Projects = () => {
     {
       title: "ManusMIDI Digital Instrument",
       description:
-        "Web app instrument for HackMIT, played by moving fingers in front of a webcam. Implemented computer vision model from OpenCV library to track keypoints of fingers & distance calculations.",
+        "Web-app instrument for HackMIT, played by moving fingers in front of a webcam. Uses OpenCV to track finger keypoints and distance calculations for musical control.",
       technologies: [
         "Python",
         "Javascript",
@@ -146,67 +117,48 @@ const Projects = () => {
   };
 
   return (
-    <div className="py-12">
-      <div className="text-center mb-12">
-        <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">
+    <div className="pb-20">
+      <header className="mb-12">
+        <h1 className="text-4xl sm:text-5xl font-bold text-forest-dark tracking-tight">
           Projects
         </h1>
-        <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+        <p className="mt-3 text-[15px] leading-[1.7] text-neutral-600 max-w-xl">
           A collection of my work in software development, AI, and creative
           technology.
         </p>
-      </div>
+      </header>
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="space-y-10">
         {projects.map((project, index) => (
-          <div
+          <article
             key={index}
             onClick={() => handleCardClick(project)}
-            className="cursor-pointer"
+            className="group grid grid-cols-1 sm:grid-cols-[10rem_1fr] gap-5 sm:gap-6 cursor-pointer border-t border-neutral-200 pt-8"
           >
-            <Card className="group hover:shadow-xl transition-all duration-300 relative flex flex-col h-[500px] bg-white border-0 shadow-md">
-              {/* Preview image or custom preview */}
-              <div className="aspect-video overflow-hidden rounded-t-lg bg-gray-100 flex items-center justify-center">
-                {project.preview ? (
-                  <div className="w-full h-full bg-[#161622] flex items-center justify-center">
-                    {project.preview}
-                  </div>
-                ) : (
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                )}
-              </div>
-
-              <CardHeader className="pb-3">
-                <CardTitle className="text-xl font-semibold text-gray-900">
-                  {project.title}
-                </CardTitle>
-                <CardDescription className="text-sm text-gray-600 leading-relaxed">
-                  {project.description}
-                </CardDescription>
-              </CardHeader>
-
-              <CardContent className="flex-1 flex flex-col justify-between">
-                <div className="flex flex-wrap gap-2">
-                  {project.technologies.map((tech) => (
-                    <Badge
-                      key={tech}
-                      variant="secondary"
-                      className="text-xs bg-gray-100 text-gray-700 hover:bg-gray-200"
-                    >
-                      {tech}
-                    </Badge>
-                  ))}
+            {/* Preview */}
+            <div className="aspect-video sm:aspect-square overflow-hidden rounded bg-neutral-100 flex items-center justify-center">
+              {project.preview ? (
+                <div className="w-full h-full bg-[#161622] flex items-center justify-center">
+                  {project.preview}
                 </div>
+              ) : (
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500"
+                />
+              )}
+            </div>
 
-                <div className="absolute bottom-2 right-2 flex items-center gap-2">
+            {/* Content */}
+            <div className="flex flex-col">
+              <div className="flex items-baseline justify-between gap-4 flex-wrap">
+                <h2 className="text-lg font-medium text-neutral-900 group-hover:text-forest-dark transition-colors duration-200">
+                  {project.title}
+                </h2>
+                <div className="flex items-center gap-3 text-[13px]">
                   {project.badge && (
-                    <span className="text-xs bg-indigo-100 text-indigo-700 px-2 py-1 rounded-full font-medium">
-                      {project.badge}
-                    </span>
+                    <span className="text-forest">{project.badge} →</span>
                   )}
                   {project.github && (
                     <a
@@ -214,14 +166,26 @@ const Projects = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={(e) => e.stopPropagation()}
+                      className="text-neutral-500 hover:text-forest transition-colors"
+                      aria-label="GitHub repository"
                     >
-                      <GitHubIcon />
+                      <Github size={16} strokeWidth={1.5} />
                     </a>
                   )}
                 </div>
-              </CardContent>
-            </Card>
-          </div>
+              </div>
+
+              <p className="mt-2 text-[14.5px] leading-[1.65] text-neutral-600">
+                {project.description}
+              </p>
+
+              <div className="mt-3 flex flex-wrap gap-x-3 gap-y-1 text-[12.5px] text-neutral-500">
+                {project.technologies.map((tech) => (
+                  <span key={tech}>{tech}</span>
+                ))}
+              </div>
+            </div>
+          </article>
         ))}
       </div>
     </div>
