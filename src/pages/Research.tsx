@@ -6,7 +6,6 @@ const Research = () => {
       journal: "SPIE Defense + Security",
       year: "2026",
       abstract: "",
-      status: "1st Author — Published",
       link: "https://www.spiedigitallibrary.org/conference-proceedings-of-spie/14029/140290L/Inverse-black-box-diffusion-modeling--multimodal-parameter-estimation-from/10.1117/12.3091221.full",
     },
     {
@@ -15,7 +14,6 @@ const Research = () => {
         "International Conference on Machine Learning Applications (ICMLA)",
       year: "2023",
       abstract: "",
-      status: "1st Author — Published",
       link: "https://ieeexplore.ieee.org/document/10459796",
     },
   ];
@@ -40,16 +38,11 @@ const Research = () => {
             rel={pub.link === "#" ? undefined : "noopener noreferrer"}
             className="group block border-t border-neutral-200 pt-8"
           >
-            <div className="flex items-baseline justify-between gap-4 flex-wrap">
-              <h2 className="text-lg font-medium text-neutral-900 group-hover:text-forest-dark transition-colors duration-200">
-                {pub.title}
-              </h2>
-              <span className="text-[12.5px] text-forest whitespace-nowrap">
-                {pub.status}
-              </span>
-            </div>
+            <h2 className="text-lg font-medium text-neutral-900 group-hover:text-forest-dark transition-colors duration-200">
+              {pub.title}
+            </h2>
             <p className="mt-1 text-[13.5px] text-neutral-500">
-              {pub.journal} · {pub.year}
+              {pub.year} {pub.journal}
             </p>
             <p className="mt-3 text-[14.5px] leading-[1.7] text-neutral-600">
               {pub.abstract}

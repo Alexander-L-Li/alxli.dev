@@ -2,11 +2,11 @@ import SocialLinks from "@/components/SocialLinks";
 
 const Home = () => {
   return (
-    <div className="pb-24">
+    <div className="pt-4 pb-8">
       {/* Page title */}
       <h1
         className="text-5xl sm:text-6xl md:text-7xl font-bold text-forest-dark tracking-tight leading-[1.05] text-center
- md:text-left mb-16 md:mb-20"
+ md:text-left mb-10 md:mb-12"
       >
         Alexander L. Li<span className="text-forest">.</span>
       </h1>
@@ -83,7 +83,7 @@ const Home = () => {
       </section>
 
       {/* Resume */}
-      <section className="mt-12 md:mt-16">
+      <section className="mt-10 md:mt-12">
         <h2 className="text-2xl font-medium text-neutral-900 mb-4">Resume</h2>
         <p className="text-[15px] leading-[1.7] text-neutral-700 mb-6">
           A short version of my experience &amp; skills.
