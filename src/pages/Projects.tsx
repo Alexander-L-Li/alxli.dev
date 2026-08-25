@@ -51,7 +51,7 @@ const Projects = () => {
       preview: <div className="text-6xl select-none">♟️</div>,
       link: "/chess",
       isInternal: true,
-      github: "https://github.com/Alexander-L-Li/chess_engine",
+      github: "https://github.com/Alexander-L-Li/AlphaChess",
       badge: "Play Now",
     },
     {
@@ -70,8 +70,8 @@ const Projects = () => {
         "Docker",
       ],
       image: "/dormspace.png",
-      link: "https://github.com/Alexander-L-Li/College-Marketplace",
-      github: "https://github.com/Alexander-L-Li/College-Marketplace",
+      link: "https://github.com/Alexander-L-Li/DormSpace",
+      github: "https://github.com/Alexander-L-Li/DormSpace",
     },
     {
       title: "Chilldeck DJ",

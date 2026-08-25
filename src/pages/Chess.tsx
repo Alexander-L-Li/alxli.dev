@@ -582,7 +582,7 @@ export default function ChessPage() {
           </p>
         </div>
         <a
-          href="https://github.com/Alexander-L-Li/chess_engine"
+          href="https://github.com/Alexander-L-Li/AlphaChess"
           target="_blank"
           rel="noopener noreferrer"
           className="text-gray-400 hover:text-white transition-colors"
