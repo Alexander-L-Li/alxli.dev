@@ -36,8 +36,8 @@ const Home = () => {
               <span className="text-neutral-900">
                 Artificial Intelligence &amp; Mathematics
               </span>{" "}
-              at MIT, currently passionate about deep learning, RL, computer
-              vision, and startups.
+              at MIT, currently passionate about SWE, deep learning, robotics,
+              computer vision, and startups.
             </p>
 
             <p>
